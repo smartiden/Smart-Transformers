@@ -142,8 +142,8 @@ jobs:
             #       keys:
             #           - v0.7-code_quality-site-packages-{{ checksum "setup.py" }}
             #           - v0.7-code-quality-site-packages
-            # - run: pip install --upgrade --upgrade-strategy eager pip
-            # - run: pip install -U --upgrade-strategy eager .[all,quality]
+            - run: pip install --upgrade --upgrade-strategy eager pip
+            - run: pip install -U --upgrade-strategy eager .[all,quality]
             # - save_cache:
             #       key: v0.7-code_quality-pip-{{ checksum "setup.py" }}
             #       paths:
@@ -182,8 +182,8 @@ jobs:
             #       keys:
             #           - v0.7-repository_consistency-site-packages-{{ checksum "setup.py" }}
             #           - v0.7-repository_consistency-site-packages
-            # - run: pip install --upgrade --upgrade-strategy eager pip
-            # - run: pip install -U --upgrade-strategy eager .[all,quality]
+            - run: pip install --upgrade --upgrade-strategy eager pip
+            - run: pip install -U --upgrade-strategy eager .[all,quality]
             # - save_cache:
             #       key: v0.7-repository_consistency-pip-{{ checksum "setup.py" }}
             #       paths:

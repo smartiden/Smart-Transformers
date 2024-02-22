@@ -102,7 +102,7 @@ class CircleCIJob:
             job["parallelism"] = self.parallelism
         steps = [
             "checkout",
-            # {"attach_workspace": {"at": "~/transformers/test_preparation"}},
+            {"attach_workspace": {"at": "~/transformers/test_preparation"}},
             # {
             #     "restore_cache": {
             #         "keys": [
