@@ -26,7 +26,7 @@ jobs:
     fetch_tests:
         working_directory: ~/transformers
         docker:
-            - image: cimg/python:3.8.12
+            - image: cimg/python:3.8.12 # TODO pushing a simple image which already has the imports could work just as well here
         parallelism: 1
         steps:
             - checkout
@@ -125,7 +125,7 @@ jobs:
 
     check_code_quality:
         working_directory: ~/transformers
-        docker:
+        docker: # TODO use a `check_code_quality` docker with .[all,quality] packages installed already.
             - image: cimg/python:3.8.12
         resource_class: large
         environment:
@@ -134,24 +134,24 @@ jobs:
         parallelism: 1
         steps:
             - checkout
-            - restore_cache:
-                  keys:
-                      - v0.7-code_quality-pip-{{ checksum "setup.py" }}
-                      - v0.7-code-quality-pip
-            - restore_cache:
-                  keys:
-                      - v0.7-code_quality-site-packages-{{ checksum "setup.py" }}
-                      - v0.7-code-quality-site-packages
-            - run: pip install --upgrade --upgrade-strategy eager pip
-            - run: pip install -U --upgrade-strategy eager .[all,quality]
-            - save_cache:
-                  key: v0.7-code_quality-pip-{{ checksum "setup.py" }}
-                  paths:
-                      - '~/.cache/pip'
-            - save_cache:
-                  key: v0.7-code_quality-site-packages-{{ checksum "setup.py" }}
-                  paths:
-                      - '~/.pyenv/versions/'
+            # - restore_cache:
+            #       keys:
+            #           - v0.7-code_quality-pip-{{ checksum "setup.py" }}
+            #           - v0.7-code-quality-pip
+            # - restore_cache:
+            #       keys:
+            #           - v0.7-code_quality-site-packages-{{ checksum "setup.py" }}
+            #           - v0.7-code-quality-site-packages
+            # - run: pip install --upgrade --upgrade-strategy eager pip
+            # - run: pip install -U --upgrade-strategy eager .[all,quality]
+            # - save_cache:
+            #       key: v0.7-code_quality-pip-{{ checksum "setup.py" }}
+            #       paths:
+            #           - '~/.cache/pip'
+            # - save_cache:
+            #       key: v0.7-code_quality-site-packages-{{ checksum "setup.py" }}
+            #       paths:
+            #           - '~/.pyenv/versions/'
             - run:
                 name: Show installed libraries and their versions
                 command: pip freeze | tee installed.txt
@@ -165,7 +165,7 @@ jobs:
 
     check_repository_consistency:
         working_directory: ~/transformers
-        docker:
+        docker: # TODO use the same docker image as `check_code_quality`
             - image: cimg/python:3.8.12
         resource_class: large
         environment:
@@ -174,24 +174,24 @@ jobs:
         parallelism: 1
         steps:
             - checkout
-            - restore_cache:
-                  keys:
-                      - v0.7-repository_consistency-pip-{{ checksum "setup.py" }}
-                      - v0.7-repository_consistency-pip
-            - restore_cache:
-                  keys:
-                      - v0.7-repository_consistency-site-packages-{{ checksum "setup.py" }}
-                      - v0.7-repository_consistency-site-packages
-            - run: pip install --upgrade --upgrade-strategy eager pip
-            - run: pip install -U --upgrade-strategy eager .[all,quality]
-            - save_cache:
-                  key: v0.7-repository_consistency-pip-{{ checksum "setup.py" }}
-                  paths:
-                      - '~/.cache/pip'
-            - save_cache:
-                  key: v0.7-repository_consistency-site-packages-{{ checksum "setup.py" }}
-                  paths:
-                      - '~/.pyenv/versions/'
+            # - restore_cache:
+            #       keys:
+            #           - v0.7-repository_consistency-pip-{{ checksum "setup.py" }}
+            #           - v0.7-repository_consistency-pip
+            # - restore_cache:
+            #       keys:
+            #           - v0.7-repository_consistency-site-packages-{{ checksum "setup.py" }}
+            #           - v0.7-repository_consistency-site-packages
+            # - run: pip install --upgrade --upgrade-strategy eager pip
+            # - run: pip install -U --upgrade-strategy eager .[all,quality]
+            # - save_cache:
+            #       key: v0.7-repository_consistency-pip-{{ checksum "setup.py" }}
+            #       paths:
+            #           - '~/.cache/pip'
+            # - save_cache:
+            #       key: v0.7-repository_consistency-site-packages-{{ checksum "setup.py" }}
+            #       paths:
+            #           - '~/.pyenv/versions/'
             - run:
                 name: Show installed libraries and their versions
                 command: pip freeze | tee installed.txt

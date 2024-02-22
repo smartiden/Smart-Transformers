@@ -33,7 +33,7 @@ COMMON_ENV_VARIABLES = {
 }
 # Disable the use of {"s": None} as the output is way too long, causing the navigation on CircleCI impractical
 COMMON_PYTEST_OPTIONS = {"max-worker-restart": 0, "dist": "loadfile", "v": None}
-DEFAULT_DOCKER_IMAGE = [{"image": "cimg/python:3.8.12"}]
+DEFAULT_DOCKER_IMAGE = [{"image": "cimg/python:3.8.12"}] # TODO update this we want other docker images
 
 
 class EmptyJob:
@@ -102,32 +102,32 @@ class CircleCIJob:
             job["parallelism"] = self.parallelism
         steps = [
             "checkout",
-            {"attach_workspace": {"at": "~/transformers/test_preparation"}},
-            {
-                "restore_cache": {
-                    "keys": [
-                        # check the fully-matched cache first
-                        f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-pip-" + '{{ checksum "setup.py" }}',
-                        # try the partially-matched cache from `main`
-                        f"v{self.cache_version}-{self.cache_name}-main-pip-",
-                        # try the general partially-matched cache
-                        f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-pip-",
-                    ]
-                }
-            },
-            {
-                "restore_cache": {
-                    "keys": [
-                        f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-site-packages-" + '{{ checksum "setup.py" }}',
-                        f"v{self.cache_version}-{self.cache_name}-main-site-packages-",
-                        f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-site-packages-",
-                    ]
-                }
-            },
+            # {"attach_workspace": {"at": "~/transformers/test_preparation"}},
+            # {
+            #     "restore_cache": {
+            #         "keys": [
+            #             # check the fully-matched cache first
+            #             f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-pip-" + '{{ checksum "setup.py" }}',
+            #             # try the partially-matched cache from `main`
+            #             f"v{self.cache_version}-{self.cache_name}-main-pip-",
+            #             # try the general partially-matched cache
+            #             f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-pip-",
+            #         ]
+            #     }
+            # },
+            # {
+            #     "restore_cache": {
+            #         "keys": [
+            #             f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-site-packages-" + '{{ checksum "setup.py" }}',
+            #             f"v{self.cache_version}-{self.cache_name}-main-site-packages-",
+            #             f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-site-packages-",
+            #         ]
+            #     }
+            # },
         ]
         steps.extend([{"run": l} for l in self.install_steps])
-        steps.extend([{"run": 'pip install "fsspec>=2023.5.0,<2023.10.0"'}])
-        steps.extend([{"run": "pip install pytest-subtests"}])
+        # steps.extend([{"run": 'pip install "fsspec>=2023.5.0,<2023.10.0"'}])
+        # steps.extend([{"run": "pip install pytest-subtests"}])
         steps.append({"run": {"name": "Show installed libraries and their versions", "command": "pip freeze | tee installed.txt"}})
         steps.append({"store_artifacts": {"path": "~/transformers/installed.txt"}})
 
@@ -249,23 +249,23 @@ class CircleCIJob:
         steps.append({"store_artifacts": {"path": "~/transformers/tests_output.txt"}})
         steps.append({"store_artifacts": {"path": "~/transformers/reports"}})
 
-        # save cache at the end: so pytest step runs before cache saving and we can see results earlier
-        steps.append(
-            {
-                "save_cache": {
-                    "key": f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-pip-" + '{{ checksum "setup.py" }}',
-                    "paths": ["~/.cache/pip"],
-                }
-            }
-        )
-        steps.append(
-            {
-                "save_cache": {
-                    "key": f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-site-packages-" + '{{ checksum "setup.py" }}',
-                    "paths": ["~/.pyenv/versions/"],
-                }
-            }
-        )
+        # # save cache at the end: so pytest step runs before cache saving and we can see results earlier
+        # steps.append(
+        #     {
+        #         "save_cache": {
+        #             "key": f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-pip-" + '{{ checksum "setup.py" }}',
+        #             "paths": ["~/.cache/pip"],
+        #         }
+        #     }
+        # )
+        # steps.append(
+        #     {
+        #         "save_cache": {
+        #             "key": f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-site-packages-" + '{{ checksum "setup.py" }}',
+        #             "paths": ["~/.pyenv/versions/"],
+        #         }
+        #     }
+        # )
 
         job["steps"] = steps
         return job
@@ -307,15 +307,17 @@ torch_and_flax_job = CircleCIJob(
     pytest_options={"rA": None, "durations": 0},
 )
 
-
+# Let's create our fist docker here torch_light_weight_docker
+# pytorch/manylinux-cpu  + torch_light_cpu.dockerfile -> ArthurZ/torch_light_cpu.
 torch_job = CircleCIJob(
     "torch",
-    install_steps=[
-        "sudo apt-get -y update && sudo apt-get install -y libsndfile1-dev espeak-ng time",
-        "pip install --upgrade --upgrade-strategy eager pip",
-        "pip install -U --upgrade-strategy eager .[sklearn,torch,testing,sentencepiece,torch-speech,vision,timm]",
-        "pip install -U --upgrade-strategy eager -e git+https://github.com/huggingface/accelerate@main#egg=accelerate",
-    ],
+    docker_image=[{"image": "arthurzucker/light_torch:latest"}],
+    # install_steps=[
+    #     "sudo apt-get -y update && sudo apt-get install -y libsndfile1-dev espeak-ng time",
+    #     "pip install --upgrade --upgrade-strategy eager pip",
+    #     "pip install -U --upgrade-strategy eager .[sklearn,torch,testing,sentencepiece,torch-speech,vision,timm]",
+    #     "pip install -U --upgrade-strategy eager -e git+https://github.com/huggingface/accelerate@main#egg=accelerate",
+    # ],
     parallelism=1,
     pytest_num_workers=6,
 )
@@ -600,6 +602,8 @@ def create_circleci_config(folder=None):
         extended_tests_to_run = set(test_list.split())
         # Extend the test files for cross test jobs
         for job in jobs:
+            if job.job_name != "torch_job":
+                pass
             if job.job_name in ["tests_torch_and_tf", "tests_torch_and_flax"]:
                 for test_path in copy.copy(extended_tests_to_run):
                     dir_path, fn = os.path.split(test_path)
@@ -625,32 +629,32 @@ def create_circleci_config(folder=None):
         with open(f_path, "w") as fp:
             fp.write(" ".join(extended_tests_to_run))
 
-    example_file = os.path.join(folder, "examples_test_list.txt")
-    if os.path.exists(example_file) and os.path.getsize(example_file) > 0:
-        with open(example_file, "r", encoding="utf-8") as f:
-            example_tests = f.read()
-        for job in EXAMPLES_TESTS:
-            framework = job.name.replace("examples_", "").replace("torch", "pytorch")
-            if example_tests == "all":
-                job.tests_to_run = [f"examples/{framework}"]
-            else:
-                job.tests_to_run = [f for f in example_tests.split(" ") if f.startswith(f"examples/{framework}")]
+    # example_file = os.path.join(folder, "examples_test_list.txt")
+    # if os.path.exists(example_file) and os.path.getsize(example_file) > 0:
+    #     with open(example_file, "r", encoding="utf-8") as f:
+    #         example_tests = f.read()
+    #     for job in EXAMPLES_TESTS:
+    #         framework = job.name.replace("examples_", "").replace("torch", "pytorch")
+    #         if example_tests == "all":
+    #             job.tests_to_run = [f"examples/{framework}"]
+    #         else:
+    #             job.tests_to_run = [f for f in example_tests.split(" ") if f.startswith(f"examples/{framework}")]
 
-            if len(job.tests_to_run) > 0:
-                jobs.append(job)
+    #         if len(job.tests_to_run) > 0:
+    #             jobs.append(job)
 
-    doctest_file = os.path.join(folder, "doctest_list.txt")
-    if os.path.exists(doctest_file):
-        with open(doctest_file) as f:
-            doctest_list = f.read()
-    else:
-        doctest_list = []
-    if len(doctest_list) > 0:
-        jobs.extend(DOC_TESTS)
+    # doctest_file = os.path.join(folder, "doctest_list.txt")
+    # if os.path.exists(doctest_file):
+    #     with open(doctest_file) as f:
+    #         doctest_list = f.read()
+    # else:
+    #     doctest_list = []
+    # if len(doctest_list) > 0:
+    #     jobs.extend(DOC_TESTS)
 
-    repo_util_file = os.path.join(folder, "test_repo_utils.txt")
-    if os.path.exists(repo_util_file) and os.path.getsize(repo_util_file) > 0:
-        jobs.extend(REPO_UTIL_TESTS)
+    # repo_util_file = os.path.join(folder, "test_repo_utils.txt")
+    # if os.path.exists(repo_util_file) and os.path.getsize(repo_util_file) > 0:
+    #     jobs.extend(REPO_UTIL_TESTS)
 
     if len(jobs) == 0:
         jobs = [EmptyJob()]
