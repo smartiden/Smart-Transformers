@@ -32,7 +32,7 @@ jobs:
             - checkout
             # - run: pip install --upgrade --upgrade-strategy eager pip
             # - run: pip install -U --upgrade-strategy eager GitPython
-            - run: uv pip install -U --upgrade-strategy eager .
+            - run: uv pip install -e .
             - run: mkdir -p test_preparation
             - run: python utils/tests_fetcher.py | tee tests_fetched_summary.txt
             - store_artifacts:
@@ -106,7 +106,7 @@ jobs:
             - checkout
             # - run: pip install --upgrade --upgrade-strategy eager pip
             # - run: pip install -U --upgrade-strategy eager GitPython
-            - run: uv pip install -U --upgrade-strategy eager .
+            - run: uv pip install -e .
             - run: |
                   mkdir test_preparation
                   echo -n "tests" > test_preparation/test_list.txt
@@ -143,7 +143,7 @@ jobs:
             #           - v0.7-code_quality-site-packages-{{ checksum "setup.py" }}
             #           - v0.7-code-quality-site-packages
             # - run: pip install --upgrade --upgrade-strategy eager pip
-            - run: uv pip install -U --upgrade-strategy eager .
+            - run: uv pip install -e .
             # - save_cache:
             #       key: v0.7-code_quality-pip-{{ checksum "setup.py" }}
             #       paths:
@@ -183,7 +183,7 @@ jobs:
             #           - v0.7-repository_consistency-site-packages-{{ checksum "setup.py" }}
             #           - v0.7-repository_consistency-site-packages
             # - run: pip install --upgrade --upgrade-strategy eager pip
-            - run: uv pip install -U --upgrade-strategy eager .
+            - run: uv pip install -e .
             # - save_cache:
             #       key: v0.7-repository_consistency-pip-{{ checksum "setup.py" }}
             #       paths:
