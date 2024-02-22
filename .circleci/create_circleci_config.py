@@ -142,7 +142,7 @@ class CircleCIJob:
         test_command = ""
         if self.command_timeout:
             test_command = f"timeout {self.command_timeout} "
-        test_command += f"python3 -m pytest -n {self.pytest_num_workers} " + " ".join(pytest_flags)
+        test_command += f"python3 -m pytest --junitxml=test-results/junit.xml -n {self.pytest_num_workers} " + " ".join(pytest_flags)
 
         if self.parallelism == 1:
             if self.tests_to_run is None:
@@ -312,7 +312,7 @@ torch_and_flax_job = CircleCIJob(
 torch_job = CircleCIJob(
     "torch",
     docker_image=[{"image": "arthurzucker/light_torch:latest"}],
-    install_steps=["pip install pytest-xdist","pip install -e ."], # TODO use uv here
+    install_steps=["uv pip install -e .[all]"], # TODO use uv here
     #     "sudo apt-get -y update && sudo apt-get install -y libsndfile1-dev espeak-ng time",
     #     "pip install --upgrade --upgrade-strategy eager pip",
     #     "pip install -U --upgrade-strategy eager .[sklearn,torch,testing,sentencepiece,torch-speech,vision,timm]",
