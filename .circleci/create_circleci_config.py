@@ -312,7 +312,7 @@ torch_and_flax_job = CircleCIJob(
 torch_job = CircleCIJob(
     "torch",
     docker_image=[{"image": "arthurzucker/light_torch:latest"}],
-    install_steps=["uv pip install -e .[all]"], # TODO use uv here
+    install_steps=["uv venv", "uv pip install -e .[all]"], # TODO use uv here
     #     "sudo apt-get -y update && sudo apt-get install -y libsndfile1-dev espeak-ng time",
     #     "pip install --upgrade --upgrade-strategy eager pip",
     #     "pip install -U --upgrade-strategy eager .[sklearn,torch,testing,sentencepiece,torch-speech,vision,timm]",
