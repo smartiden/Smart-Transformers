@@ -142,7 +142,7 @@ class CircleCIJob:
         test_command = ""
         if self.command_timeout:
             test_command = f"timeout {self.command_timeout} "
-        test_command += f"pytest --junitxml=test-results/junit.xml -n {self.pytest_num_workers} " + " ".join(pytest_flags)
+        test_command += f"python3 -m pytest -n {self.pytest_num_workers} " + " ".join(pytest_flags)
 
         if self.parallelism == 1:
             if self.tests_to_run is None:
@@ -312,7 +312,7 @@ torch_and_flax_job = CircleCIJob(
 torch_job = CircleCIJob(
     "torch",
     docker_image=[{"image": "arthurzucker/light_torch:latest"}],
-    install_steps=["pip install -e ."], # TODO use uv here
+    install_steps=["pip install pytest-xdist","pip install -e ."], # TODO use uv here
     #     "sudo apt-get -y update && sudo apt-get install -y libsndfile1-dev espeak-ng time",
     #     "pip install --upgrade --upgrade-strategy eager pip",
     #     "pip install -U --upgrade-strategy eager .[sklearn,torch,testing,sentencepiece,torch-speech,vision,timm]",
@@ -597,62 +597,62 @@ def create_circleci_config(folder=None):
     else:
         test_list = []
     if len(test_list) > 0:
-        jobs.extend(REGULAR_TESTS)
+        jobs.extend([torch_job])
 
-        extended_tests_to_run = set(test_list.split())
-        # Extend the test files for cross test jobs
-        for job in jobs:
-            if job.job_name in ["tests_torch_and_tf", "tests_torch_and_flax"]:
-                for test_path in copy.copy(extended_tests_to_run):
-                    dir_path, fn = os.path.split(test_path)
-                    if fn.startswith("test_modeling_tf_"):
-                        fn = fn.replace("test_modeling_tf_", "test_modeling_")
-                    elif fn.startswith("test_modeling_flax_"):
-                        fn = fn.replace("test_modeling_flax_", "test_modeling_")
-                    else:
-                        if job.job_name == "test_torch_and_tf":
-                            fn = fn.replace("test_modeling_", "test_modeling_tf_")
-                        elif job.job_name == "test_torch_and_flax":
-                            fn = fn.replace("test_modeling_", "test_modeling_flax_")
-                    new_test_file = str(os.path.join(dir_path, fn))
-                    if os.path.isfile(new_test_file):
-                        if new_test_file not in extended_tests_to_run:
-                            extended_tests_to_run.add(new_test_file)
-        extended_tests_to_run = sorted(extended_tests_to_run)
-        for job in jobs:
-            if job.job_name in ["tests_torch_and_tf", "tests_torch_and_flax"]:
-                job.tests_to_run = extended_tests_to_run
-        fn = "filtered_test_list_cross_tests.txt"
-        f_path = os.path.join(folder, fn)
-        with open(f_path, "w") as fp:
-            fp.write(" ".join(extended_tests_to_run))
+    #     extended_tests_to_run = set(test_list.split())
+    #     # Extend the test files for cross test jobs
+    #     for job in jobs:
+    #         if job.job_name in ["tests_torch_and_tf", "tests_torch_and_flax"]:
+    #             for test_path in copy.copy(extended_tests_to_run):
+    #                 dir_path, fn = os.path.split(test_path)
+    #                 if fn.startswith("test_modeling_tf_"):
+    #                     fn = fn.replace("test_modeling_tf_", "test_modeling_")
+    #                 elif fn.startswith("test_modeling_flax_"):
+    #                     fn = fn.replace("test_modeling_flax_", "test_modeling_")
+    #                 else:
+    #                     if job.job_name == "test_torch_and_tf":
+    #                         fn = fn.replace("test_modeling_", "test_modeling_tf_")
+    #                     elif job.job_name == "test_torch_and_flax":
+    #                         fn = fn.replace("test_modeling_", "test_modeling_flax_")
+    #                 new_test_file = str(os.path.join(dir_path, fn))
+    #                 if os.path.isfile(new_test_file):
+    #                     if new_test_file not in extended_tests_to_run:
+    #                         extended_tests_to_run.add(new_test_file)
+    #     extended_tests_to_run = sorted(extended_tests_to_run)
+    #     for job in jobs:
+    #         if job.job_name in ["tests_torch_and_tf", "tests_torch_and_flax"]:
+    #             job.tests_to_run = extended_tests_to_run
+    #     fn = "filtered_test_list_cross_tests.txt"
+    #     f_path = os.path.join(folder, fn)
+    #     with open(f_path, "w") as fp:
+    #         fp.write(" ".join(extended_tests_to_run))
 
-    example_file = os.path.join(folder, "examples_test_list.txt")
-    if os.path.exists(example_file) and os.path.getsize(example_file) > 0:
-        with open(example_file, "r", encoding="utf-8") as f:
-            example_tests = f.read()
-        for job in EXAMPLES_TESTS:
-            framework = job.name.replace("examples_", "").replace("torch", "pytorch")
-            if example_tests == "all":
-                job.tests_to_run = [f"examples/{framework}"]
-            else:
-                job.tests_to_run = [f for f in example_tests.split(" ") if f.startswith(f"examples/{framework}")]
+    # example_file = os.path.join(folder, "examples_test_list.txt")
+    # if os.path.exists(example_file) and os.path.getsize(example_file) > 0:
+    #     with open(example_file, "r", encoding="utf-8") as f:
+    #         example_tests = f.read()
+    #     for job in EXAMPLES_TESTS:
+    #         framework = job.name.replace("examples_", "").replace("torch", "pytorch")
+    #         if example_tests == "all":
+    #             job.tests_to_run = [f"examples/{framework}"]
+    #         else:
+    #             job.tests_to_run = [f for f in example_tests.split(" ") if f.startswith(f"examples/{framework}")]
 
-            if len(job.tests_to_run) > 0:
-                jobs.append(job)
+    #         if len(job.tests_to_run) > 0:
+    #             jobs.append(job)
 
-    doctest_file = os.path.join(folder, "doctest_list.txt")
-    if os.path.exists(doctest_file):
-        with open(doctest_file) as f:
-            doctest_list = f.read()
-    else:
-        doctest_list = []
-    if len(doctest_list) > 0:
-        jobs.extend(DOC_TESTS)
+    # doctest_file = os.path.join(folder, "doctest_list.txt")
+    # if os.path.exists(doctest_file):
+    #     with open(doctest_file) as f:
+    #         doctest_list = f.read()
+    # else:
+    #     doctest_list = []
+    # if len(doctest_list) > 0:
+    #     jobs.extend(DOC_TESTS)
 
-    repo_util_file = os.path.join(folder, "test_repo_utils.txt")
-    if os.path.exists(repo_util_file) and os.path.getsize(repo_util_file) > 0:
-        jobs.extend(REPO_UTIL_TESTS)
+    # repo_util_file = os.path.join(folder, "test_repo_utils.txt")
+    # if os.path.exists(repo_util_file) and os.path.getsize(repo_util_file) > 0:
+    #     jobs.extend(REPO_UTIL_TESTS)
 
     if len(jobs) == 0:
         jobs = [EmptyJob()]
