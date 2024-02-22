@@ -11,6 +11,8 @@ parameters:
 jobs:
     # Ensure running with CircleCI/huggingface
     check_circleci_user:
+        docker:
+            - image: python:3.11-slim
         parallelism: 1
         steps:
             - run: echo $CIRCLE_PROJECT_USERNAME
