@@ -126,7 +126,7 @@ jobs:
     check_code_quality:
         working_directory: ~/transformers
         docker: # TODO use a `check_code_quality` docker with .[all,quality] packages installed already.
-            - image: cimg/python:3.8.12
+            - image: arthur/check_quality_large #cimg/python:3.8.12
         resource_class: large
         environment:
             TRANSFORMERS_IS_CI: yes
