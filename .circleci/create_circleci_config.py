@@ -535,7 +535,7 @@ def create_circleci_config(folder=None):
     else:
         test_list = []
     if len(test_list) > 0:
-        jobs.extend([torch_job])
+        jobs.extend([torch_job, custom_tokenizers_job])
 
     #     extended_tests_to_run = set(test_list.split())
     #     # Extend the test files for cross test jobs
