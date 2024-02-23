@@ -32,6 +32,7 @@ jobs:
             - checkout
             - run: uv pip install -U -e .
             - run: uv pip install -U pip GitPython
+            - run: PARAMS=$([ -f "$PARAMETERS" ] && cat "$PARAMETERS" || echo "$PARAMETERS") 
             - run: mkdir -p test_preparation
             - run: python utils/tests_fetcher.py | tee tests_fetched_summary.txt
             - store_artifacts:
@@ -87,13 +88,13 @@ jobs:
                       echo "No tests to run, exiting early!"
                       circleci-agent step halt
                   fi
-            # - run: cp test_preparation/generated_config.yml test_preparation/generated_config.yml
             - store_artifacts:
-                  path: test_preparation/generated_config.yml
+                path: test_preparation/generated_config.yml
             - store_artifacts:
-                  path: test_preparation/filtered_test_list_cross_tests.txt
+                path: test_preparation/filtered_test_list_cross_tests.txt
+            - run: export PARAMETERS=""
             - continuation/continue:
-                  configuration_path: test_preparation/generated_config.yml
+                configuration_path: test_preparation/generated_config.yml
 
     # To run all tests for the nightly build
     fetch_all_tests:
