@@ -26,12 +26,10 @@ jobs:
     fetch_tests:
         working_directory: ~/transformers
         docker:
-            - image: arthurzucker/check_quality:latest #cimg/python:3.8.12 # TODO pushing a simple image which already has the imports could work just as well here
+            - image: arthurzucker/check_laerge
         parallelism: 1
         steps:
             - checkout
-            # - run: pip install --upgrade --upgrade-strategy eager pip
-            # - run: pip install -U --upgrade-strategy eager GitPython
             - run: uv pip install -e .
             - run: mkdir -p test_preparation
             - run: python utils/tests_fetcher.py | tee tests_fetched_summary.txt
