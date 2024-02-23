@@ -30,8 +30,9 @@ jobs:
         parallelism: 1
         steps:
             - checkout
-            - run: uv pip install -U -e .
-            - run: echo << pipeline.parameters.nightly >>
+            # - run: uv pip install -U -e .
+            - run: pip install -U --upgrade-strategy eager .
+            - run: echo << pipeline.parameters >>
             - run: mkdir -p test_preparation
             - run: python utils/tests_fetcher.py | tee tests_fetched_summary.txt
             - store_artifacts:
@@ -91,7 +92,6 @@ jobs:
                 path: test_preparation/generated_config.yml
             - store_artifacts:
                 path: test_preparation/filtered_test_list_cross_tests.txt
-            - run: export PARAMETERS="{}"
             - continuation/continue:
                 configuration_path: test_preparation/generated_config.yml
 
