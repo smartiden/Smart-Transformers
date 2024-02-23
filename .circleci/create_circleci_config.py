@@ -403,21 +403,8 @@ onnx_job = CircleCIJob(
 
 exotic_models_job = CircleCIJob(
     "exotic_models",
-    install_steps=[
-        "sudo apt-get -y update && sudo apt-get install -y libsndfile1-dev",
-        "pip install --upgrade --upgrade-strategy eager pip",
-        "pip install -U --upgrade-strategy eager .[torch,testing,vision]",
-        "pip install -U --upgrade-strategy eager torchvision",
-        "pip install -U --upgrade-strategy eager scipy",
-        "pip install -U --upgrade-strategy eager 'git+https://github.com/facebookresearch/detectron2.git'",
-        "sudo apt install tesseract-ocr",
-        "pip install -U --upgrade-strategy eager pytesseract",
-        "pip install -U --upgrade-strategy eager natten==0.15.1+torch210cpu -f https://shi-labs.com/natten/wheels",
-        "pip install -U --upgrade-strategy eager python-Levenshtein",
-        "pip install -U --upgrade-strategy eager opencv-python",
-        "pip install -U --upgrade-strategy eager nltk",
-        "pip uninstall -y torch torchvision torchaudio && pip install -U --upgrade-strategy eager 'torch<2.2.0' 'torchvision<0.17' 'torchaudio<2.2.0'"
-    ],
+    install_steps=["uv venv", "uv pip install -e ."],
+    docker_image=[{"image":"arthurzucker/exotic"}],
     tests_to_run=[
         "tests/models/*layoutlmv*",
         "tests/models/*nat",
@@ -532,7 +519,7 @@ def create_circleci_config(folder=None):
     else:
         test_list = []
     if len(test_list) > 0:
-        jobs.extend([torch_job, custom_tokenizers_job, tf_job])
+        jobs.extend([torch_job, custom_tokenizers_job, tf_job, exotic_models_job])
 
     #     extended_tests_to_run = set(test_list.split())
     #     # Extend the test files for cross test jobs
