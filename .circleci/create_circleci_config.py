@@ -237,6 +237,7 @@ class CircleCIJob:
 # JOBS
 torch_and_tf_job = CircleCIJob(
     "torch_and_tf",
+    docker_image=[{"image":"arthurzucker/tf_light"}],
     additional_env={"RUN_PT_TF_CROSS_TESTS": True},
     install_steps=[
         "sudo apt-get -y update && sudo apt-get install -y libsndfile1-dev espeak-ng git-lfs cmake",
@@ -277,12 +278,8 @@ torch_job = CircleCIJob(
 
 tf_job = CircleCIJob(
     "tf",
-    install_steps=[
-        "sudo apt-get -y update && sudo apt-get install -y libsndfile1-dev espeak-ng cmake",
-        "pip install --upgrade --upgrade-strategy eager pip",
-        "pip install -U --upgrade-strategy eager .[sklearn,tf-cpu,testing,sentencepiece,tf-speech,vision]",
-        "pip install -U --upgrade-strategy eager tensorflow_probability",
-    ],
+    docker_image=[{"image":"arthurzucker/tf_light"}],
+    install_steps=["uv venv", "uv pip install -e."],
     parallelism=1,
 )
 
@@ -535,7 +532,7 @@ def create_circleci_config(folder=None):
     else:
         test_list = []
     if len(test_list) > 0:
-        jobs.extend([torch_job, custom_tokenizers_job])
+        jobs.extend([torch_job, custom_tokenizers_job, tf_job])
 
     #     extended_tests_to_run = set(test_list.split())
     #     # Extend the test files for cross test jobs
