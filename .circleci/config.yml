@@ -31,6 +31,7 @@ jobs:
         steps:
             - checkout
             - run: uv pip install -U -e .
+            - run: echo << pipeline.parameters.nightly >>
             - run: mkdir -p test_preparation
             - run: python utils/tests_fetcher.py | tee tests_fetched_summary.txt
             - store_artifacts:
