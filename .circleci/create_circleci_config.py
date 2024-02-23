@@ -33,7 +33,7 @@ COMMON_ENV_VARIABLES = {
 }
 # Disable the use of {"s": None} as the output is way too long, causing the navigation on CircleCI impractical
 COMMON_PYTEST_OPTIONS = {"max-worker-restart": 0, "dist": "loadfile", "v": None}
-DEFAULT_DOCKER_IMAGE = [{"image": "cimg/python:3.8.12"}] # TODO update this we want other docker images
+DEFAULT_DOCKER_IMAGE = [{"image": "cimg/python:3.8.12"}]
 
 
 class EmptyJob:
@@ -105,8 +105,6 @@ class CircleCIJob:
             {"attach_workspace": {"at": "~/transformers/test_preparation"}},
         ]
         steps.extend([{"run": l} for l in self.install_steps])
-        # steps.extend([{"run": 'pip install "fsspec>=2023.5.0,<2023.10.0"'}])
-        # steps.extend([{"run": "pip install pytest-subtests"}])
         steps.append({"run": {"name": "Show installed libraries and their versions", "command": "pip freeze | tee installed.txt"}})
         steps.append({"store_artifacts": {"path": "~/transformers/installed.txt"}})
 
