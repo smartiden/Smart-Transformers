@@ -611,7 +611,7 @@ def create_circleci_config(folder=None):
     config = {"version": "2.1"}
     config["parameters"] = {
         # Only used to accept the parameters from the trigger
-        "nightly": {"type": "boolean", "default": "false"},
+        "nightly": {"type": "boolean", "default": False},
         "tests_to_run": {"type": "string", "default": "tests/test_configuration_utils.py"}
     }
     config["jobs"] = {j.job_name: j.to_dict() for j in jobs}
