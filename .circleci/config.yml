@@ -100,12 +100,10 @@ jobs:
     fetch_all_tests:
         working_directory: ~/transformers
         docker:
-            - image: arthurzucker/check_quality:latest
+            - image: arthurzucker/check_large
         parallelism: 1
         steps:
             - checkout
-            # - run: pip install --upgrade --upgrade-strategy eager pip
-            # - run: pip install -U --upgrade-strategy eager GitPython
             - run: uv pip install -e .
             - run: |
                   mkdir test_preparation
@@ -125,8 +123,8 @@ jobs:
 
     check_code_quality:
         working_directory: ~/transformers
-        docker: # TODO use a `check_code_quality` docker with .[all,quality] packages installed already.
-            - image: arthurzucker/check_quality #cimg/python:3.8.12
+        docker:
+            - image: arthurzucker/check_quality
         resource_class: large
         environment:
             TRANSFORMERS_IS_CI: yes
@@ -134,24 +132,7 @@ jobs:
         parallelism: 1
         steps:
             - checkout
-            # - restore_cache:
-            #       keys:
-            #           - v0.7-code_quality-pip-{{ checksum "setup.py" }}
-            #           - v0.7-code-quality-pip
-            # - restore_cache:
-            #       keys:
-            #           - v0.7-code_quality-site-packages-{{ checksum "setup.py" }}
-            #           - v0.7-code-quality-site-packages
-            # - run: pip install --upgrade --upgrade-strategy eager pip
             - run: uv pip install -e .
-            # - save_cache:
-            #       key: v0.7-code_quality-pip-{{ checksum "setup.py" }}
-            #       paths:
-            #           - '~/.cache/pip'
-            # - save_cache:
-            #       key: v0.7-code_quality-site-packages-{{ checksum "setup.py" }}
-            #       paths:
-            #           - '~/.pyenv/versions/'
             - run:
                 name: Show installed libraries and their versions
                 command: pip freeze | tee installed.txt
@@ -166,7 +147,7 @@ jobs:
     check_repository_consistency:
         working_directory: ~/transformers
         docker: # TODO use the same docker image as `check_code_quality`
-            - image: arthurzucker/check_quality
+            - image: arthurzucker/check_large
         resource_class: large
         environment:
             TRANSFORMERS_IS_CI: yes
@@ -174,24 +155,7 @@ jobs:
         parallelism: 1
         steps:
             - checkout
-            # - restore_cache:
-            #       keys:
-            #           - v0.7-repository_consistency-pip-{{ checksum "setup.py" }}
-            #           - v0.7-repository_consistency-pip
-            # - restore_cache:
-            #       keys:
-            #           - v0.7-repository_consistency-site-packages-{{ checksum "setup.py" }}
-            #           - v0.7-repository_consistency-site-packages
-            # - run: pip install --upgrade --upgrade-strategy eager pip
             - run: uv pip install -e .
-            # - save_cache:
-            #       key: v0.7-repository_consistency-pip-{{ checksum "setup.py" }}
-            #       paths:
-            #           - '~/.cache/pip'
-            # - save_cache:
-            #       key: v0.7-repository_consistency-site-packages-{{ checksum "setup.py" }}
-            #       paths:
-            #           - '~/.pyenv/versions/'
             - run:
                 name: Show installed libraries and their versions
                 command: pip freeze | tee installed.txt
