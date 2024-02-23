@@ -327,22 +327,8 @@ pipelines_tf_job = CircleCIJob(
 custom_tokenizers_job = CircleCIJob(
     "custom_tokenizers",
     additional_env={"RUN_CUSTOM_TOKENIZERS": True},
-    install_steps=[
-        "sudo apt-get -y update && sudo apt-get install -y cmake",
-        {
-            "name": "install jumanpp",
-            "command":
-                "wget https://github.com/ku-nlp/jumanpp/releases/download/v2.0.0-rc3/jumanpp-2.0.0-rc3.tar.xz\n"
-                "tar xvf jumanpp-2.0.0-rc3.tar.xz\n"
-                "mkdir jumanpp-2.0.0-rc3/bld\n"
-                "cd jumanpp-2.0.0-rc3/bld\n"
-                "sudo cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local\n"
-                "sudo make install\n",
-        },
-        "pip install --upgrade --upgrade-strategy eager pip",
-        "pip install -U --upgrade-strategy eager .[ja,testing,sentencepiece,jieba,spacy,ftfy,rjieba]",
-        "python -m unidic download",
-    ],
+    docker_image=[{"image": "arthurzucker/custom_tokenizers:latest"}],
+    install_steps=["uv venv","uv pip install -e ."],
     parallelism=None,
     resource_class=None,
     tests_to_run=[
