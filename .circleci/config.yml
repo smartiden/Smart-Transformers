@@ -26,7 +26,7 @@ jobs:
     fetch_tests:
         working_directory: ~/transformers
         docker:
-            - image: arthurzucker/check_laerge
+            - image: arthurzucker/check_large
         parallelism: 1
         steps:
             - checkout
@@ -144,7 +144,7 @@ jobs:
 
     check_repository_consistency:
         working_directory: ~/transformers
-        docker: # TODO use the same docker image as `check_code_quality`
+        docker:
             - image: arthurzucker/check_large
         resource_class: large
         environment:
