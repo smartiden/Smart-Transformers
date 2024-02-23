@@ -103,27 +103,6 @@ class CircleCIJob:
         steps = [
             "checkout",
             {"attach_workspace": {"at": "~/transformers/test_preparation"}},
-            # {
-            #     "restore_cache": {
-            #         "keys": [
-            #             # check the fully-matched cache first
-            #             f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-pip-" + '{{ checksum "setup.py" }}',
-            #             # try the partially-matched cache from `main`
-            #             f"v{self.cache_version}-{self.cache_name}-main-pip-",
-            #             # try the general partially-matched cache
-            #             f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-pip-",
-            #         ]
-            #     }
-            # },
-            # {
-            #     "restore_cache": {
-            #         "keys": [
-            #             f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-site-packages-" + '{{ checksum "setup.py" }}',
-            #             f"v{self.cache_version}-{self.cache_name}-main-site-packages-",
-            #             f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-site-packages-",
-            #         ]
-            #     }
-            # },
         ]
         steps.extend([{"run": l} for l in self.install_steps])
         # steps.extend([{"run": 'pip install "fsspec>=2023.5.0,<2023.10.0"'}])
@@ -249,24 +228,6 @@ class CircleCIJob:
         steps.append({"store_artifacts": {"path": "~/transformers/tests_output.txt"}})
         steps.append({"store_artifacts": {"path": "~/transformers/reports"}})
 
-        # # save cache at the end: so pytest step runs before cache saving and we can see results earlier
-        # steps.append(
-        #     {
-        #         "save_cache": {
-        #             "key": f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-pip-" + '{{ checksum "setup.py" }}',
-        #             "paths": ["~/.cache/pip"],
-        #         }
-        #     }
-        # )
-        # steps.append(
-        #     {
-        #         "save_cache": {
-        #             "key": f"v{self.cache_version}-{self.cache_name}-{cache_branch_prefix}-site-packages-" + '{{ checksum "setup.py" }}',
-        #             "paths": ["~/.pyenv/versions/"],
-        #         }
-        #     }
-        # )
-
         job["steps"] = steps
         return job
 
@@ -307,17 +268,10 @@ torch_and_flax_job = CircleCIJob(
     pytest_options={"rA": None, "durations": 0},
 )
 
-# Let's create our fist docker here torch_light_weight_docker
-# pytorch/manylinux-cpu  + torch_light_cpu.dockerfile -> ArthurZ/torch_light_cpu.
 torch_job = CircleCIJob(
     "torch",
     docker_image=[{"image": "arthurzucker/light_torch:latest"}],
     install_steps=["uv venv", "uv pip install -e ."], # TODO use uv here
-    #     "sudo apt-get -y update && sudo apt-get install -y libsndfile1-dev espeak-ng time",
-    #     "pip install --upgrade --upgrade-strategy eager pip",
-    #     "pip install -U --upgrade-strategy eager .[sklearn,torch,testing,sentencepiece,torch-speech,vision,timm]",
-    #     "pip install -U --upgrade-strategy eager -e git+https://github.com/huggingface/accelerate@main#egg=accelerate",
-    # ],
     parallelism=1,
     pytest_num_workers=6,
 )
