@@ -404,7 +404,7 @@ onnx_job = CircleCIJob(
 exotic_models_job = CircleCIJob(
     "exotic_models",
     install_steps=["uv venv", "uv pip install -e ."],
-    docker_image=[{"image":"arthurzucker/exotic"}],
+    docker_image=[{"image":"arthurzucker//exotic_models"}],
     tests_to_run=[
         "tests/models/*layoutlmv*",
         "tests/models/*nat",
