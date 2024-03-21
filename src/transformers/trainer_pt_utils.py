@@ -1210,6 +1210,14 @@ class AcceleratorConfig:
         },
     )
 
+    use_configured_state: bool = field(
+        default=False,
+        metadata={
+            "help": "Whether or not to use a pre-configured `AcceleratorState` or `PartialState` defined before calling `TrainingArguments`."
+            "If `True`, an `Accelerator` or `PartialState` must be initialized."
+        },
+    )
+
     @classmethod
     def from_json_file(cls, json_file):
         # Check if exists
