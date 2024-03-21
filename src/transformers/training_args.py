@@ -1943,7 +1943,7 @@ class TrainingArguments:
                 )
             use_configured_state = self.accelerator_config.pop("use_configured_state", False)
             if use_configured_state:
-                if AcceleratorState._shared_state == {}:
+                if PartialState._shared_state == {}:
                     raise ValueError(
                         "Passing `'use_configured_state':True` to the AcceleratorConfig requires a pre-configured "
                         "`AcceleratorState` or `PartialState` to be defined before calling `TrainingArguments`. "
