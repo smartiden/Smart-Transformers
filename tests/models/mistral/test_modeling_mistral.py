@@ -559,7 +559,7 @@ class MistralIntegrationTest(unittest.TestCase):
                     -5.8711,
                     -5.8711,
                 ]
-            ),
+            ),  # fmt: skip
         }
 
         print(out[0, 0, :30])
