@@ -573,7 +573,7 @@ class Message:
         print(json.dumps({"blocks": blocks}))
 
         client.chat_postMessage(
-            channel=os.environ["CI_SLACK_REPORT_CHANNEL_ID"],
+            channel=CI_SLACK_REPORT_CHANNEL_ID,
             text=text,
             blocks=payload,
         )
@@ -586,7 +586,7 @@ class Message:
         text = f"{self.n_failures} failures out of {self.n_tests} tests," if self.n_failures else "All tests passed."
 
         self.thread_ts = client.chat_postMessage(
-            channel=os.environ["CI_SLACK_REPORT_CHANNEL_ID"],
+            channel=CI_SLACK_REPORT_CHANNEL_ID,
             blocks=payload,
             text=text,
         )
@@ -712,7 +712,7 @@ class Message:
                     print(json.dumps({"blocks": blocks}))
 
                     client.chat_postMessage(
-                        channel=os.environ["CI_SLACK_REPORT_CHANNEL_ID"],
+                        channel=CI_SLACK_REPORT_CHANNEL_ID,
                         text=f"Results for {job}",
                         blocks=blocks,
                         thread_ts=self.thread_ts["ts"],
@@ -735,7 +735,7 @@ class Message:
                     print(json.dumps({"blocks": blocks}))
 
                     client.chat_postMessage(
-                        channel=os.environ["CI_SLACK_REPORT_CHANNEL_ID"],
+                        channel=CI_SLACK_REPORT_CHANNEL_ID,
                         text=f"Results for {job}",
                         blocks=blocks,
                         thread_ts=self.thread_ts["ts"],
@@ -749,7 +749,7 @@ class Message:
             print(json.dumps({"blocks": blocks}))
 
             client.chat_postMessage(
-                channel=os.environ["CI_SLACK_REPORT_CHANNEL_ID"],
+                channel=CI_SLACK_REPORT_CHANNEL_ID,
                 text="Results for new failures",
                 blocks=blocks,
                 thread_ts=self.thread_ts["ts"],
@@ -852,6 +852,10 @@ def prepare_reports(title, header, reports, to_truncate=True):
 
 
 if __name__ == "__main__":
+
+    ENV_NAME_FOR_CI_SLACK_REPORT_CHANNEL_ID = os.environ["ENV_NAME_FOR_CI_SLACK_REPORT_CHANNEL_ID"]
+    CI_SLACK_REPORT_CHANNEL_ID = os.environ[ENV_NAME_FOR_CI_SLACK_REPORT_CHANNEL_ID]
+
     # runner_status = os.environ.get("RUNNER_STATUS")
     # runner_env_status = os.environ.get("RUNNER_ENV_STATUS")
     setup_status = os.environ.get("SETUP_STATUS")
@@ -861,7 +865,7 @@ if __name__ == "__main__":
     # Let's keep the lines regardig runners' status (we might be able to use them again in the future)
     runner_not_available = False
     runner_failed = False
-    setup_failed = True if setup_status is not None and setup_status != "success" else False
+    setup_failed = False if setup_status in ["skipped", "success"] else True
 
     org = "huggingface"
     repo = "transformers"
@@ -929,14 +933,18 @@ if __name__ == "__main__":
         Message.error_out(title, ci_title, runner_not_available, runner_failed, setup_failed)
         exit(0)
 
-    arguments = sys.argv[1:][0]
-    try:
-        folder_slices = ast.literal_eval(arguments)
-        # Need to change from elements like `models/bert` to `models_bert` (the ones used as artifact names).
-        models = [x.replace("models/", "models_") for folders in folder_slices for x in folders]
-    except SyntaxError:
-        Message.error_out(title, ci_title)
-        raise ValueError("Errored out.")
+    arguments = sys.argv[1:]
+    if len(arguments) == 0 or arguments[0] == "":
+        models = []
+    else:
+        model_list_as_str = arguments[0]
+        try:
+            folder_slices = ast.literal_eval(model_list_as_str)
+            # Need to change from elements like `models/bert` to `models_bert` (the ones used as artifact names).
+            models = [x.replace("models/", "models_") for folders in folder_slices for x in folders]
+        except:
+            Message.error_out(title, ci_title)
+            raise ValueError("Errored out.")
 
     github_actions_jobs = get_jobs(
         workflow_run_id=os.environ["GITHUB_RUN_ID"], token=os.environ["ACCESS_REPO_INFO_TOKEN"]
@@ -1038,6 +1046,13 @@ if __name__ == "__main__":
                             unclassified_model_failures.append(line)
 
     # Additional runs
+    job_to_test_map = {
+        # "": "Examples directory",
+        # "": "PyTorch pipelines",
+        # "": "TensorFlow pipelines",
+        # "": "Torch CUDA extension tests",
+        "run_tests_quantization_torch_gpu": "Quantization tests",
+    }
     additional_files = {
         "Examples directory": "run_examples_gpu",
         "PyTorch pipelines": "run_tests_torch_pipeline_gpu",
@@ -1055,6 +1070,13 @@ if __name__ == "__main__":
         del additional_files["Torch CUDA extension tests"]
     elif ci_event.startswith("Push CI (AMD)"):
         additional_files = {}
+
+    test_name = None
+    job_name = os.getenv("CI_TEST_JOB")
+    if job_name in job_to_test_map:
+        test_name = job_to_test_map[job_name]
+
+    additional_files = {k: v for k, v in additional_files.items() if k == test_name}
 
     additional_results = {
         key: {
