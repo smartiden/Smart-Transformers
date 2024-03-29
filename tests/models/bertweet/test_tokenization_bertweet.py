@@ -43,6 +43,12 @@ class BertweetTokenizationTest(TokenizerTesterMixin, unittest.TestCase):
         with open(self.merges_file, "w", encoding="utf-8") as fp:
             fp.write("\n".join(merges))
 
+    def test_foo_1(self):
+        assert 1 == 2
+
+    def test_foo_2(self):
+        assert 1 == 3
+
     def get_tokenizer(self, **kwargs):
         kwargs.update(self.special_tokens_map)
         return BertweetTokenizer.from_pretrained(self.tmpdirname, **kwargs)
