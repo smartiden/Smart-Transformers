@@ -853,7 +853,11 @@ def prepare_reports(title, header, reports, to_truncate=True):
 
 if __name__ == "__main__":
 
+    # The value of `ENV_NAME_FOR_CI_SLACK_REPORT_CHANNEL_ID` is *NOT* the Slack channel ID. Instead, the value is an
+    # environment variable name that is set in `.github/workflows/slack-report.yml`. The possible values are:
+    # `CI_SLACK_CHANNEL_ID`, `CI_SLACK_CHANNEL_ID_DAILY`, `CI_SLACK_CHANNEL_DUMMY_TESTS`, etc.
     ENV_NAME_FOR_CI_SLACK_REPORT_CHANNEL_ID = os.environ["ENV_NAME_FOR_CI_SLACK_REPORT_CHANNEL_ID"]
+    # The value of `CI_SLACK_REPORT_CHANNEL_ID` is the Slack channel ID where we want to send the CI report.
     CI_SLACK_REPORT_CHANNEL_ID = os.environ[ENV_NAME_FOR_CI_SLACK_REPORT_CHANNEL_ID]
 
     # runner_status = os.environ.get("RUNNER_STATUS")
@@ -865,6 +869,7 @@ if __name__ == "__main__":
     # Let's keep the lines regardig runners' status (we might be able to use them again in the future)
     runner_not_available = False
     runner_failed = False
+    # Some jobs don't depend (`needs`) on the job `setup`: in this case, the status of the job `setup` is `skipped`.
     setup_failed = False if setup_status in ["skipped", "success"] else True
 
     org = "huggingface"
@@ -933,8 +938,11 @@ if __name__ == "__main__":
         Message.error_out(title, ci_title, runner_not_available, runner_failed, setup_failed)
         exit(0)
 
+    # sys.argv[0] is always `utils/notification_service.py`.
     arguments = sys.argv[1:]
-    if len(arguments) == 0 or arguments[0] == "":
+    # In our usage in `.github/workflows/slack-report.yml`, we always pass an argument when calling this script.
+    # The argument could be an empty string `""` if a job doesn't depend on the job `setup`.
+    if arguments[0] == "":
         models = []
     else:
         model_list_as_str = arguments[0]
@@ -1046,13 +1054,6 @@ if __name__ == "__main__":
                             unclassified_model_failures.append(line)
 
     # Additional runs
-    job_to_test_map = {
-        # "": "Examples directory",
-        # "": "PyTorch pipelines",
-        # "": "TensorFlow pipelines",
-        # "": "Torch CUDA extension tests",
-        "run_tests_quantization_torch_gpu": "Quantization tests",
-    }
     additional_files = {
         "Examples directory": "run_examples_gpu",
         "PyTorch pipelines": "run_tests_torch_pipeline_gpu",
@@ -1071,11 +1072,22 @@ if __name__ == "__main__":
     elif ci_event.startswith("Push CI (AMD)"):
         additional_files = {}
 
+    # A map associating the job names (specified by `inputs.job` in a workflow file) with the keys of
+    # `additional_files`. This is used to remove some entries in `additional_files` that are not concerned by a
+    # specific job. See below.
+    job_to_test_map = {
+        # "": "Examples directory",
+        # "": "PyTorch pipelines",
+        # "": "TensorFlow pipelines",
+        # "": "Torch CUDA extension tests",
+        "run_tests_quantization_torch_gpu": "Quantization tests",
+    }
+
+    # Remove some entries in `additional_files` if they are not concerned.
     test_name = None
     job_name = os.getenv("CI_TEST_JOB")
     if job_name in job_to_test_map:
         test_name = job_to_test_map[job_name]
-
     additional_files = {k: v for k, v in additional_files.items() if k == test_name}
 
     additional_results = {
