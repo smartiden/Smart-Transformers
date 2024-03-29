@@ -353,7 +353,7 @@ jobs:
 
   run_extract_warnings:
     # Let's only do this for the job `run_tests_gpu` to simplify the (already complex) logic.
-    if: ${{ inputs.job == 'run_tests_gpu' }}
+    if: ${{ always() && inputs.job == 'run_tests_gpu' }}
     name: Extract warnings in CI artifacts
     runs-on: ubuntu-22.04
     needs: [setup, run_tests_gpu]
