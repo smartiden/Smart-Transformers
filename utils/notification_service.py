@@ -227,10 +227,13 @@ class Message:
         button_text = "Check warnings (Link not found)"
         # Use the workflow run link
         job_link = f"https://github.com/huggingface/transformers/actions/runs/{os.environ['GITHUB_RUN_ID']}"
-        if "Extract warnings in CI artifacts" in github_actions_job_links:
-            button_text = "Check warnings"
-            # Use the actual job link
-            job_link = f"{github_actions_job_links['Extract warnings in CI artifacts']}"
+
+        for job in github_actions_jobs:
+            if "Extract warnings in CI artifacts" in job["name"] and job["conclusion"] == "success":
+                button_text = "Check warnings"
+                # Use the actual job link
+                job_link = job["html_url"]
+                break
 
         huggingface_hub_warnings = [x for x in self.selected_warnings if "huggingface_hub" in x]
         text = f"There are {len(self.selected_warnings)} warnings being selected."
