@@ -743,19 +743,20 @@ class Message:
 
                     time.sleep(1)
 
-        blocks = self.get_new_model_failure_blocks()
-        if blocks:
-            print("Sending the following reply")
-            print(json.dumps({"blocks": blocks}))
+        if self.n_model_failures > 0:
+            blocks = self.get_new_model_failure_blocks()
+            if blocks:
+                print("Sending the following reply")
+                print(json.dumps({"blocks": blocks}))
 
-            client.chat_postMessage(
-                channel=CI_SLACK_REPORT_CHANNEL_ID,
-                text="Results for new failures",
-                blocks=blocks,
-                thread_ts=self.thread_ts["ts"],
-            )
+                client.chat_postMessage(
+                    channel=CI_SLACK_REPORT_CHANNEL_ID,
+                    text="Results for new failures",
+                    blocks=blocks,
+                    thread_ts=self.thread_ts["ts"],
+                )
 
-            time.sleep(1)
+                time.sleep(1)
 
 
 def retrieve_artifact(artifact_path: str, gpu: Optional[str]):

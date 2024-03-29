@@ -56,10 +56,10 @@ jobs:
           pip show slack_sdk
           python utils/notification_service.py "${{ inputs.folder_slices }}"
 
-#      # Upload complete failure tables, as they might be big and only truncated versions could be sent to Slack.
-#      - name: Failure table artifacts
-#        if: ${{ always() }}
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: prev_ci_results
-#          path: prev_ci_results
+      # Upload complete failure tables, as they might be big and only truncated versions could be sent to Slack.
+      - name: Failure table artifacts
+        if: ${{ inputs.job == 'run_tests_gpu' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: prev_ci_results
+          path: prev_ci_results
