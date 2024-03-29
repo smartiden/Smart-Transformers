@@ -21,6 +21,7 @@ jobs:
     uses: ./.github/workflows/self-scheduled.yml
     with:
       job: run_tests_gpu
+      # See the comment for `ENV_NAME_FOR_CI_SLACK_REPORT_CHANNEL_ID` in `.github/workflows/slack-report.yml`.
       env_name_for_slack_report_channel: CI_SLACK_CHANNEL_DUMMY_TESTS
     secrets: inherit
 
@@ -31,5 +32,6 @@ jobs:
     uses: ./.github/workflows/self-scheduled.yml
     with:
       job: run_tests_quantization_torch_gpu
+      # See the comment for `ENV_NAME_FOR_CI_SLACK_REPORT_CHANNEL_ID` in `.github/workflows/slack-report.yml`.
       env_name_for_slack_report_channel: CI_SLACK_CHANNEL_DUMMY_TESTS
     secrets: inherit
