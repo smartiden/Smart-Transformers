@@ -458,7 +458,9 @@ jobs:
     uses: ./.github/workflows/slack-report.yml
     with:
       job: ${{ inputs.job }}
+      # This would be `skipped` if `setup` is skipped.
       setup_status: ${{ needs.setup.result }}
       env_name_for_slack_report_channel: ${{ inputs.env_name_for_slack_report_channel }}
+      # This would be an empty string if `setup` is skipped.
       folder_slices: ${{ needs.setup.outputs.folder_slices }}
     secrets: inherit
