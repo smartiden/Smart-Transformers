@@ -1139,10 +1139,11 @@ if __name__ == "__main__":
                         )
 
     selected_warnings = []
-    if "warnings_in_ci" in available_artifacts:
-        directory = available_artifacts["warnings_in_ci"].paths[0]["path"]
-        with open(os.path.join(directory, "selected_warnings.json")) as fp:
-            selected_warnings = json.load(fp)
+    if job_name == "run_tests_gpu":
+        if "warnings_in_ci" in available_artifacts:
+            directory = available_artifacts["warnings_in_ci"].paths[0]["path"]
+            with open(os.path.join(directory, "selected_warnings.json")) as fp:
+                selected_warnings = json.load(fp)
 
     if not os.path.isdir(os.path.join(os.getcwd(), "prev_ci_results")):
         os.makedirs(os.path.join(os.getcwd(), "prev_ci_results"))
