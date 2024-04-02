@@ -100,7 +100,6 @@ jobs:
     container:
       image: huggingface/transformers-all-latest-gpu
       options: --gpus 0 --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
-    needs: setup
     steps:
       - name: Update clone
         working-directory: /transformers
@@ -250,7 +249,6 @@ jobs:
       matrix:
         machine_type: [single-gpu, multi-gpu]
     runs-on: ['${{ matrix.machine_type }}', nvidia-gpu, t4, daily-ci]
-    needs: setup
     container:
       image: huggingface/transformers-pytorch-deepspeed-latest-gpu
       options: --gpus all --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
@@ -396,7 +394,7 @@ jobs:
 
   send_results:
     name: Slack Report
-    needs: [setup, run_tests_gpu, run_tests_quantization_torch_gpu, run_extract_warnings]
+    needs: [setup, run_tests_gpu, run_examples_gpu, run_all_tests_torch_cuda_extensions_gpu, run_tests_quantization_torch_gpu, run_extract_warnings]
     if: ${{ always() }}
     uses: ./.github/workflows/slack-report.yml
     with:
