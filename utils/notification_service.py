@@ -1153,8 +1153,11 @@ if __name__ == "__main__":
     if not os.path.isdir(os.path.join(os.getcwd(), "prev_ci_results")):
         os.makedirs(os.path.join(os.getcwd(), "prev_ci_results"))
 
-    with open("prev_ci_results/model_results.json", "w", encoding="UTF-8") as fp:
-        json.dump(model_results, fp, indent=4, ensure_ascii=False)
+    # Only the model testing job is concerned: this condition is to avoid other jobs to upload the empty list as
+    # results.
+    if job_name == "run_tests_gpu":
+        with open("prev_ci_results/model_results.json", "w", encoding="UTF-8") as fp:
+            json.dump(model_results, fp, indent=4, ensure_ascii=False)
 
     prev_ci_artifacts = None
     target_workflow = "huggingface/transformers/.github/workflows/self-scheduled.yml@refs/heads/main"
