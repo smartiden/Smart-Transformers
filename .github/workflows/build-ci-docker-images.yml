@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  quality:
+  build:
     # Push CI doesn't need this image
     # if: inputs.image_postfix != '-push-ci'
 
