@@ -25,6 +25,15 @@ jobs:
       env_name_for_slack_report_channel: CI_SLACK_CHANNEL_DUMMY_TESTS
     secrets: inherit
 
+  deepspeed-ci:
+    name: DeepSpeed CI
+    uses: ./.github/workflows/self-scheduled.yml
+    with:
+      job: run_all_tests_torch_cuda_extensions_gpu
+      # See the comment for `ENV_NAME_FOR_CI_SLACK_REPORT_CHANNEL_ID` in `.github/workflows/slack-report.yml`.
+      env_name_for_slack_report_channel: CI_SLACK_CHANNEL_DUMMY_TESTS
+    secrets: inherit
+
   quantization-ci:
     name: Quantization CI
     uses: ./.github/workflows/self-scheduled.yml

@@ -1082,7 +1082,7 @@ if __name__ == "__main__":
         # "": "Examples directory",
         # "": "PyTorch pipelines",
         # "": "TensorFlow pipelines",
-        # "": "Torch CUDA extension tests",
+        "run_all_tests_torch_cuda_extensions_gpu": "Torch CUDA extension tests",
         "run_tests_quantization_torch_gpu": "Quantization tests",
     }
 
