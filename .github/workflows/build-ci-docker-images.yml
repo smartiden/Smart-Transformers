@@ -1,3 +1,5 @@
+name: Build docker
+
 on:
   push:
     branches:
@@ -42,7 +44,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       -
-        name: Build and push
+        name: ${{ matrix.file }}
         uses: docker/build-push-action@v5
         with:
           context: ./docker
