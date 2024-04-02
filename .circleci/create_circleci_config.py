@@ -57,9 +57,9 @@ class CircleCIJob:
     install_steps: List[str] = None
     marker: Optional[str] = None
     parallelism: Optional[int] = 1
-    pytest_num_workers: int = 8
+    pytest_num_workers: int = 12
     pytest_options: Dict[str, Any] = None
-    resource_class: Optional[str] = "xlarge"
+    resource_class: Optional[str] = "2xlarge"
     tests_to_run: Optional[List[str]] = None
     working_directory: str = "~/transformers"
     # This should be only used for doctest job!
@@ -272,7 +272,7 @@ torch_job = CircleCIJob(
     docker_image=[{"image": "huggingface/transformers-torch-light"}],
     install_steps=["uv venv", "uv pip install -e ."],
     parallelism=1,
-    pytest_num_workers=6,
+    pytest_num_workers=12,
 )
 
 
@@ -304,7 +304,7 @@ pipelines_torch_job = CircleCIJob(
         "pip install -U --upgrade-strategy eager .[sklearn,torch,testing,sentencepiece,torch-speech,vision,timm,video]",
     ],
     marker="is_pipeline_test",
-    pytest_num_workers=6,
+    pytest_num_workers=12,
 )
 
 
