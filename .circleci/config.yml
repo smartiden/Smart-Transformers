@@ -26,7 +26,7 @@ jobs:
     fetch_tests:
         working_directory: ~/transformers
         docker:
-            - image: arthurzucker/check_quality
+            - image: huggingface/transformers-quality
         parallelism: 1
         steps:
             - checkout
