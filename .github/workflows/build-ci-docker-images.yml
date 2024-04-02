@@ -43,6 +43,6 @@ jobs:
           context: ./docker
           build-args: |
             REF=main
-            -f ./docker/quality.dockerfile ./docker
+          file: "quality.dockerfile"
           push: true
           tags: huggingface/transformers-quality
