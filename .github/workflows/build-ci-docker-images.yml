@@ -19,7 +19,6 @@ concurrency:
 
 jobs:
   quality:
-    name: "Build docker"
     # Push CI doesn't need this image
     # if: inputs.image_postfix != '-push-ci'
 
