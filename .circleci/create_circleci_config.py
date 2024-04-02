@@ -237,7 +237,7 @@ class CircleCIJob:
 # JOBS
 torch_and_tf_job = CircleCIJob(
     "torch_and_tf",
-    docker_image=[{"image":"arthurzucker/tf_light"}],
+    docker_image=[{"image":"huggingface/transformers-torch-tf-light"}], # TODO
     additional_env={"RUN_PT_TF_CROSS_TESTS": True},
     install_steps=[
         "sudo apt-get -y update && sudo apt-get install -y libsndfile1-dev espeak-ng git-lfs cmake",
@@ -269,7 +269,7 @@ torch_and_flax_job = CircleCIJob(
 
 torch_job = CircleCIJob(
     "torch",
-    docker_image=[{"image": "arthurzucker/light_torch:latest"}],
+    docker_image=[{"image": "huggingface/transformers-torch-light"}],
     install_steps=["uv venv", "uv pip install -e ."],
     parallelism=1,
     pytest_num_workers=6,
@@ -278,7 +278,7 @@ torch_job = CircleCIJob(
 
 tf_job = CircleCIJob(
     "tf",
-    docker_image=[{"image":"arthurzucker/tf_light"}],
+    docker_image=[{"image":"huggingface/transformers-tf-light"}],
     install_steps=["uv venv", "uv pip install -e."],
     parallelism=1,
 )
@@ -324,7 +324,7 @@ pipelines_tf_job = CircleCIJob(
 custom_tokenizers_job = CircleCIJob(
     "custom_tokenizers",
     additional_env={"RUN_CUSTOM_TOKENIZERS": True},
-    docker_image=[{"image": "arthurzucker/custom_tokenizers:latest"}],
+    docker_image=[{"image": "huggingface/transformers-custom-tokenizers"}],
     install_steps=["uv venv","uv pip install -e ."],
     parallelism=None,
     resource_class=None,
@@ -404,7 +404,7 @@ onnx_job = CircleCIJob(
 exotic_models_job = CircleCIJob(
     "exotic_models",
     install_steps=["uv venv", "uv pip install -e ."],
-    docker_image=[{"image":"arthurzucker/exotic_models"}],
+    docker_image=[{"image":"huggingface/transformers-exotic-models"}],
     tests_to_run=[
         "tests/models/*layoutlmv*",
         "tests/models/*nat",

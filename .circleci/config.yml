@@ -97,7 +97,7 @@ jobs:
     fetch_all_tests:
         working_directory: ~/transformers
         docker:
-            - image: arthurzucker/check_large
+            - image: huggingface/transformers-check-large
         parallelism: 1
         steps:
             - checkout
@@ -121,7 +121,7 @@ jobs:
     check_code_quality:
         working_directory: ~/transformers
         docker:
-            - image: arthurzucker/check_quality
+            - image: huggingface/transformers-check-quality
         resource_class: large
         environment:
             TRANSFORMERS_IS_CI: yes
@@ -144,7 +144,7 @@ jobs:
     check_repository_consistency:
         working_directory: ~/transformers
         docker:
-            - image: arthurzucker/check_large
+            - image: huggingface/transformers-check-large
         resource_class: large
         environment:
             TRANSFORMERS_IS_CI: yes
