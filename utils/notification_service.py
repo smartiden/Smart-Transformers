@@ -1140,6 +1140,9 @@ if __name__ == "__main__":
                             {"line": line, "trace": stacktraces.pop(0)}
                         )
 
+    # Let's only check the warning for the model testing job. Currently, the job `run_extract_warnings` is only run
+    # when `inputs.job` (in the workflow file) is `run_tests_gpu`. The reason is: otherwise we need to save several
+    # artifacts with different names which complicates the logic for an insignificant part of the CI workflow reporting.
     selected_warnings = []
     if job_name == "run_tests_gpu":
         if "warnings_in_ci" in available_artifacts:
