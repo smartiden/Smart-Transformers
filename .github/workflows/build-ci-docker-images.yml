@@ -1,5 +1,3 @@
-name: Build docker images (scheduled)
-
 on:
   push:
     branches:
