@@ -1158,7 +1158,7 @@ if __name__ == "__main__":
 
     prev_ci_artifacts = None
     target_workflow = "huggingface/transformers/.github/workflows/self-scheduled.yml@refs/heads/main"
-    if True or os.environ.get("CI_WORKFLOW_REF") == target_workflow:
+    if os.environ.get("CI_WORKFLOW_REF") == target_workflow:
         # Get the last previously completed CI's failure tables
         artifact_names = ["prev_ci_results"]
         output_dir = os.path.join(os.getcwd(), "previous_reports")
