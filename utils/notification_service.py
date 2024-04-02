@@ -1058,9 +1058,9 @@ if __name__ == "__main__":
 
     # Additional runs
     additional_files = {
-        "Examples directory": "run_examples_gpu",
         "PyTorch pipelines": "run_tests_torch_pipeline_gpu",
         "TensorFlow pipelines": "run_tests_tf_pipeline_gpu",
+        "Examples directory": "run_examples_gpu",
         "Torch CUDA extension tests": "run_tests_torch_cuda_extensions_gpu_test_reports",
         "Quantization tests": "run_tests_quantization_torch_gpu",
     }
@@ -1079,9 +1079,9 @@ if __name__ == "__main__":
     # `additional_files`. This is used to remove some entries in `additional_files` that are not concerned by a
     # specific job. See below.
     job_to_test_map = {
+        "run_pipelines_torch_gpu": "PyTorch pipelines",
+        "run_pipelines_tf_gpu": "TensorFlow pipelines",
         "run_examples_gpu": "Examples directory",
-        # "": "PyTorch pipelines",
-        # "": "TensorFlow pipelines",
         "run_all_tests_torch_cuda_extensions_gpu": "Torch CUDA extension tests",
         "run_tests_quantization_torch_gpu": "Quantization tests",
     }
