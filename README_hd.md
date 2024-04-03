@@ -45,19 +45,19 @@ checkpoint: जाँच बिंदु
     <br>
 </p>
 <p align="center">
-    <a href="https://circleci.com/gh/huggingface/transformers">
-        <img alt="Build" src="https://img.shields.io/circleci/build/github/huggingface/transformers/main">
+    <a href="https://circleci.com/gh/smartiden/Smart-Transformers">
+        <img alt="Build" src="https://img.shields.io/circleci/build/github/smartiden/Smart-Transformers/main">
     </a>
-    <a href="https://github.com/huggingface/transformers/blob/main/LICENSE">
-        <img alt="GitHub" src="https://img.shields.io/github/license/huggingface/transformers.svg?color=blue">
+    <a href="https://github.com/smartiden/Smart-Transformers/blob/main/LICENSE">
+        <img alt="GitHub" src="https://img.shields.io/github/license/smartiden/Smart-Transformers.svg?color=blue">
     </a>
     <a href="https://huggingface.co/docs/transformers/index">
         <img alt="Documentation" src="https://img.shields.io/website/http/huggingface.co/docs/transformers/index.svg?down_color=red&down_message=offline&up_message=online">
     </a>
-    <a href="https://github.com/huggingface/transformers/releases">
-        <img alt="GitHub release" src="https://img.shields.io/github/release/huggingface/transformers.svg">
+    <a href="https://github.com/smartiden/Smart-Transformers/releases">
+        <img alt="GitHub release" src="https://img.shields.io/github/release/smartiden/Smart-Transformers.svg">
     </a>
-    <a href="https://github.com/huggingface/transformers/blob/main/CODE_OF_CONDUCT.md">
+    <a href="https://github.com/smartiden/Smart-Transformers/blob/main/CODE_OF_CONDUCT.md">
         <img alt="Contributor Covenant" src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg">
     </a>
     <a href="https://zenodo.org/badge/latestdoi/155220641"><img src="https://zenodo.org/badge/155220641.svg" alt="DOI"></a>
@@ -65,19 +65,19 @@ checkpoint: जाँच बिंदु
 
 <h4 align="center">
     <p>
-        <a href="https://github.com/huggingface/transformers/">English</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_zh-hans.md">简体中文</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_zh-hant.md">繁體中文</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_ko.md">한국어</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_es.md">Español</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_ja.md">日本語</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/">English</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_zh-hans.md">简体中文</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_zh-hant.md">繁體中文</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_ko.md">한국어</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_es.md">Español</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_ja.md">日本語</a> |
         <b>हिन्दी</b> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_ru.md">Русский</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_pt-br.md">Рortuguês</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_te.md">తెలుగు</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_fr.md">Français</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_de.md">Deutsch</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_vi.md">Tiếng Việt</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_ru.md">Русский</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_pt-br.md">Рortuguês</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_te.md">తెలుగు</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_fr.md">Français</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_de.md">Deutsch</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_vi.md">Tiếng Việt</a> |
     </p>
 </h4>
 
@@ -140,9 +140,9 @@ checkpoint: जाँच बिंदु
 >>> question_answerer = pipeline('question-answering')
 >>> question_answerer({
 ...     'question': 'What is the name of the repository ?',
-...     'context': 'Pipeline has been included in the huggingface/transformers repository'
+...     'context': 'Pipeline has been included in the smartiden/Smart-Transformers repository'
 ... })
-{'score': 0.30970096588134766, 'start': 34, 'end': 58, 'answer': 'huggingface/transformers'}
+{'score': 0.30970096588134766, 'start': 34, 'end': 58, 'answer': 'smartiden/Smart-Transformers'}
 
 ```
 
@@ -200,7 +200,7 @@ checkpoint: जाँच बिंदु
 
 - यह लाइब्रेरी मॉड्यूलर न्यूरल नेटवर्क टूलबॉक्स नहीं है। मॉडल फ़ाइल में कोड जानबूझकर अल्पविकसित है, बिना अतिरिक्त सार इनकैप्सुलेशन के, ताकि शोधकर्ता अमूर्तता और फ़ाइल जंपिंग में शामिल हुए जल्दी से पुनरावृति कर सकें।
 - `ट्रेनर` एपीआई किसी भी मॉडल के साथ संगत नहीं है, यह केवल इस पुस्तकालय के मॉडल के लिए अनुकूलित है। यदि आप सामान्य मशीन लर्निंग के लिए उपयुक्त प्रशिक्षण लूप कार्यान्वयन की तलाश में हैं, तो कहीं और देखें।
-- हमारे सर्वोत्तम प्रयासों के बावजूद, [उदाहरण निर्देशिका](https://github.com/huggingface/transformers/tree/main/examples) में स्क्रिप्ट केवल उपयोग के मामले हैं। आपकी विशिष्ट समस्या के लिए, वे जरूरी नहीं कि बॉक्स से बाहर काम करें, और आपको कोड की कुछ पंक्तियों को सूट करने की आवश्यकता हो सकती है।
+- हमारे सर्वोत्तम प्रयासों के बावजूद, [उदाहरण निर्देशिका](https://github.com/smartiden/Smart-Transformers/tree/main/examples) में स्क्रिप्ट केवल उपयोग के मामले हैं। आपकी विशिष्ट समस्या के लिए, वे जरूरी नहीं कि बॉक्स से बाहर काम करें, और आपको कोड की कुछ पंक्तियों को सूट करने की आवश्यकता हो सकती है।
 
 ## स्थापित करना
 
@@ -300,7 +300,7 @@ conda install conda-forge::transformers
 1. **[DialoGPT](https://huggingface.co/docs/transformers/model_doc/dialogpt)** (माइक्रोसॉफ्ट रिसर्च से) कागज के साथ [DialoGPT: Large-Scale Generative Pre-training for Conversational Response Generation](https://arxiv.org/abs/1911.00536) यिज़े झांग, सिकी सन, मिशेल गैली, येन-चुन चेन, क्रिस ब्रोकेट, जियांग गाओ, जियानफेंग गाओ, जिंगजिंग लियू, बिल डोलन द्वारा।
 1. **[DiNAT](https://huggingface.co/docs/transformers/model_doc/dinat)** (from SHI Labs) released with the paper [Dilated Neighborhood Attention Transformer](https://arxiv.org/abs/2209.15001) by Ali Hassani and Humphrey Shi.
 1. **[DINOv2](https://huggingface.co/docs/transformers/model_doc/dinov2)** (Meta AI से) Maxime Oquab, Timothée Darcet, Théo Moutakanni, Huy Vo, Marc Szafraniec, Vasil Khalidov, Pierre Fernandez, Daniel Haziza, Francisco Massa, Alaaeldin El-Nouby, Mahmoud Assran, Nicolas Ballas, Wojciech Galuba, Russell Howes, Po-Yao Huang, Shang-Wen Li, Ishan Misra, Michael Rabbat, Vasu Sharma, Gabriel Synnaeve, Hu Xu, Hervé Jegou, Julien Mairal, Patrick Labatut, Armand Joulin, Piotr Bojanowski. द्वाराअनुसंधान पत्र [DINOv2: Learning Robust Visual Features without Supervision](https://arxiv.org/abs/2304.07193) के साथ जारी किया गया
-1. **[DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert)** (हगिंगफेस से), साथ में कागज [DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter](https://arxiv.org/abs/1910.01108) विक्टर सनह, लिसांड्रे डेब्यू और थॉमस वुल्फ द्वारा पोस्ट किया गया। यही तरीका GPT-2 को [DistilGPT2](https://github.com/huggingface/transformers/tree/main/examples/distillation), RoBERta से [DistilRoBERta](https://github.com) पर कंप्रेस करने के लिए भी लागू किया जाता है। / हगिंगफेस/ट्रांसफॉर्मर्स/ट्री/मेन/उदाहरण/डिस्टिलेशन), बहुभाषी BERT से [DistilmBERT](https://github.com/huggingface/transformers/tree/main/examples/distillation) और डिस्टिलबर्ट का जर्मन संस्करण।
+1. **[DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert)** (हगिंगफेस से), साथ में कागज [DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter](https://arxiv.org/abs/1910.01108) विक्टर सनह, लिसांड्रे डेब्यू और थॉमस वुल्फ द्वारा पोस्ट किया गया। यही तरीका GPT-2 को [DistilGPT2](https://github.com/smartiden/Smart-Transformers/tree/main/examples/distillation), RoBERta से [DistilRoBERta](https://github.com) पर कंप्रेस करने के लिए भी लागू किया जाता है। / हगिंगफेस/ट्रांसफॉर्मर्स/ट्री/मेन/उदाहरण/डिस्टिलेशन), बहुभाषी BERT से [DistilmBERT](https://github.com/smartiden/Smart-Transformers/tree/main/examples/distillation) और डिस्टिलबर्ट का जर्मन संस्करण।
 1. **[DiT](https://huggingface.co/docs/transformers/model_doc/dit)** (माइक्रोसॉफ्ट रिसर्च से) साथ में पेपर [DiT: Self-supervised Pre-training for Document Image Transformer](https://arxiv.org/abs/2203.02378) जुनलॉन्ग ली, यिहेंग जू, टेंगचाओ लव, लेई कुई, चा झांग द्वारा फुरु वेई द्वारा पोस्ट किया गया।
 1. **[Donut](https://huggingface.co/docs/transformers/model_doc/donut)** (NAVER से) साथ में कागज [OCR-free Document Understanding Transformer](https://arxiv.org/abs/2111.15664) गीवूक किम, टीकग्यू होंग, मूनबिन यिम, जियोंग्योन नाम, जिनयॉन्ग पार्क, जिनयॉन्ग यिम, वोनसेओक ह्वांग, सांगडू यूं, डोंगयून हान, सेउंग्युन पार्क द्वारा।
 1. **[DPR](https://huggingface.co/docs/transformers/model_doc/dpr)** (फेसबुक से) साथ में पेपर [Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906) व्लादिमीर करपुखिन, बरलास ओज़ुज़, सेवन मिन, पैट्रिक लुईस, लेडेल वू, सर्गेई एडुनोव, डैनकी चेन, और वेन-ताऊ यिह द्वारा।
@@ -519,7 +519,7 @@ conda install conda-forge::transformers
 | [कार्य सारांश](https://huggingface.co/docs/transformers/task_summary) | ट्रांसफॉर्मर समर्थित कार्य |
 | [प्रीप्रोसेसिंग ट्यूटोरियल](https://huggingface.co/docs/transformers/preprocessing) | मॉडल के लिए डेटा तैयार करने के लिए `टोकनाइज़र` का उपयोग करना |
 | [प्रशिक्षण और फाइन-ट्यूनिंग](https://huggingface.co/docs/transformers/training) | PyTorch/TensorFlow के ट्रेनिंग लूप या `ट्रेनर` API में ट्रांसफॉर्मर द्वारा दिए गए मॉडल का उपयोग करें |
-| [क्विक स्टार्ट: ट्वीकिंग एंड यूज़ केस स्क्रिप्ट्स](https://github.com/huggingface/transformers/tree/main/examples) | विभिन्न कार्यों के लिए केस स्क्रिप्ट का उपयोग करें |
+| [क्विक स्टार्ट: ट्वीकिंग एंड यूज़ केस स्क्रिप्ट्स](https://github.com/smartiden/Smart-Transformers/tree/main/examples) | विभिन्न कार्यों के लिए केस स्क्रिप्ट का उपयोग करें |
 | [मॉडल साझा करना और अपलोड करना](https://huggingface.co/docs/transformers/model_sharing) | समुदाय के साथ अपने फाइन टूनड मॉडल अपलोड और साझा करें |
 | [माइग्रेशन](https://huggingface.co/docs/transformers/migration) | `पाइटोरच-ट्रांसफॉर्मर्स` या `पाइटोरच-प्रीट्रेनड-बर्ट` से ट्रांसफॉर्मर में माइग्रेट करना |
 
