@@ -26,19 +26,19 @@ limitations under the License.
 
 
 <p align="center">
-    <a href="https://circleci.com/gh/huggingface/transformers">
-        <img alt="Build" src="https://img.shields.io/circleci/build/github/huggingface/transformers/main">
+    <a href="https://circleci.com/gh/smartiden/Smart-Transformers">
+        <img alt="Build" src="https://img.shields.io/circleci/build/github/smartiden/Smart-Transformers/main">
     </a>
-    <a href="https://github.com/huggingface/transformers/blob/main/LICENSE">
-        <img alt="GitHub" src="https://img.shields.io/github/license/huggingface/transformers.svg?color=blue">
+    <a href="https://github.com/smartiden/Smart-Transformers/blob/main/LICENSE">
+        <img alt="GitHub" src="https://img.shields.io/github/license/smartiden/Smart-Transformers.svg?color=blue">
     </a>
     <a href="https://huggingface.co/docs/transformers/index">
         <img alt="Documentation" src="https://img.shields.io/website/http/huggingface.co/docs/transformers/index.svg?down_color=red&down_message=offline&up_message=online">
     </a>
-    <a href="https://github.com/huggingface/transformers/releases">
-        <img alt="GitHub release" src="https://img.shields.io/github/release/huggingface/transformers.svg">
+    <a href="https://github.com/smartiden/Smart-Transformers/releases">
+        <img alt="GitHub release" src="https://img.shields.io/github/release/smartiden/Smart-Transformers.svg">
     </a>
-    <a href="https://github.com/huggingface/transformers/blob/main/CODE_OF_CONDUCT.md">
+    <a href="https://github.com/smartiden/Smart-Transformers/blob/main/CODE_OF_CONDUCT.md">
         <img alt="Contributor Covenant" src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg">
     </a>
     <a href="https://zenodo.org/badge/latestdoi/155220641"><img src="https://zenodo.org/badge/155220641.svg" alt="DOI"></a>
@@ -47,19 +47,19 @@ limitations under the License.
 
 <h4 align="center">
     <p>
-        <a href="https://github.com/huggingface/transformers/">English</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_zh-hans.md">简体中文</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_zh-hant.md">繁體中文</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_ko.md">한국어</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_es.md">Español</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_ja.md">日本語</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_hd.md">हिन्दी</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_ru.md">Русский</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_pt-br.md">Рortuguês</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/">English</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_zh-hans.md">简体中文</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_zh-hant.md">繁體中文</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_ko.md">한국어</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_es.md">Español</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_ja.md">日本語</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_hd.md">हिन्दी</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_ru.md">Русский</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_pt-br.md">Рortuguês</a> |
         <b>తెలుగు</b> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_fr.md">Français</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_de.md">Deutsch</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_vi.md">Tiếng Việt</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_fr.md">Français</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_de.md">Deutsch</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_vi.md">Tiếng Việt</a> |
     </p>
 </h4>
 
@@ -248,7 +248,7 @@ limitations under the License.
 
 - ఈ లైబ్రరీ న్యూరల్ నెట్‌ల కోసం బిల్డింగ్ బ్లాక్‌ల మాడ్యులర్ టూల్‌బాక్స్ కాదు. మోడల్ ఫైల్‌లలోని కోడ్ ఉద్దేశపూర్వకంగా అదనపు సంగ్రహణలతో రీఫ్యాక్టరింగ్ చేయబడదు, తద్వారా పరిశోధకులు అదనపు సంగ్రహణలు/ఫైళ్లలోకి ప్రవేశించకుండా ప్రతి మోడల్‌పై త్వరగా మళ్లించగలరు.
 - శిక్షణ API ఏ మోడల్‌లో పని చేయడానికి ఉద్దేశించబడలేదు కానీ లైబ్రరీ అందించిన మోడల్‌లతో పని చేయడానికి ఆప్టిమైజ్ చేయబడింది. సాధారణ మెషిన్ లెర్నింగ్ లూప్‌ల కోసం, మీరు మరొక లైబ్రరీని ఉపయోగించాలి (బహుశా, [Accelerate](https://huggingface.co/docs/accelerate)).
-- మేము వీలైనన్ని ఎక్కువ వినియోగ సందర్భాలను ప్రదర్శించడానికి ప్రయత్నిస్తున్నప్పుడు, మా [ఉదాహరణల ఫోల్డర్](https://github.com/huggingface/transformers/tree/main/examples)లోని స్క్రిప్ట్‌లు కేవలం: ఉదాహరణలు. మీ నిర్దిష్ట సమస్యపై అవి పని చేయవు మరియు వాటిని మీ అవసరాలకు అనుగుణంగా మార్చుకోవడానికి మీరు కొన్ని కోడ్ లైన్‌లను మార్చవలసి ఉంటుంది.
+- మేము వీలైనన్ని ఎక్కువ వినియోగ సందర్భాలను ప్రదర్శించడానికి ప్రయత్నిస్తున్నప్పుడు, మా [ఉదాహరణల ఫోల్డర్](https://github.com/smartiden/Smart-Transformers/tree/main/examples)లోని స్క్రిప్ట్‌లు కేవలం: ఉదాహరణలు. మీ నిర్దిష్ట సమస్యపై అవి పని చేయవు మరియు వాటిని మీ అవసరాలకు అనుగుణంగా మార్చుకోవడానికి మీరు కొన్ని కోడ్ లైన్‌లను మార్చవలసి ఉంటుంది.
 
 ## సంస్థాపన
 
@@ -350,7 +350,7 @@ Flax, PyTorch లేదా TensorFlow యొక్క ఇన్‌స్టా�
 1. **[DialoGPT](https://huggingface.co/docs/transformers/model_doc/dialogpt)** (from Microsoft Research) released with the paper [DialoGPT: Large-Scale Generative Pre-training for Conversational Response Generation](https://arxiv.org/abs/1911.00536) by Yizhe Zhang, Siqi Sun, Michel Galley, Yen-Chun Chen, Chris Brockett, Xiang Gao, Jianfeng Gao, Jingjing Liu, Bill Dolan.
 1. **[DiNAT](https://huggingface.co/docs/transformers/model_doc/dinat)** (from SHI Labs) released with the paper [Dilated Neighborhood Attention Transformer](https://arxiv.org/abs/2209.15001) by Ali Hassani and Humphrey Shi.
 1. **[DINOv2](https://huggingface.co/docs/transformers/model_doc/dinov2)** (from Meta AI) released with the paper [DINOv2: Learning Robust Visual Features without Supervision](https://arxiv.org/abs/2304.07193) by Maxime Oquab, Timothée Darcet, Théo Moutakanni, Huy Vo, Marc Szafraniec, Vasil Khalidov, Pierre Fernandez, Daniel Haziza, Francisco Massa, Alaaeldin El-Nouby, Mahmoud Assran, Nicolas Ballas, Wojciech Galuba, Russell Howes, Po-Yao Huang, Shang-Wen Li, Ishan Misra, Michael Rabbat, Vasu Sharma, Gabriel Synnaeve, Hu Xu, Hervé Jegou, Julien Mairal, Patrick Labatut, Armand Joulin, Piotr Bojanowski.
-1. **[DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert)** (from HuggingFace), released together with the paper [DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter](https://arxiv.org/abs/1910.01108) by Victor Sanh, Lysandre Debut and Thomas Wolf. The same method has been applied to compress GPT2 into [DistilGPT2](https://github.com/huggingface/transformers/tree/main/examples/research_projects/distillation), RoBERTa into [DistilRoBERTa](https://github.com/huggingface/transformers/tree/main/examples/research_projects/distillation), Multilingual BERT into [DistilmBERT](https://github.com/huggingface/transformers/tree/main/examples/research_projects/distillation) and a German version of DistilBERT.
+1. **[DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert)** (from HuggingFace), released together with the paper [DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter](https://arxiv.org/abs/1910.01108) by Victor Sanh, Lysandre Debut and Thomas Wolf. The same method has been applied to compress GPT2 into [DistilGPT2](https://github.com/smartiden/Smart-Transformers/tree/main/examples/research_projects/distillation), RoBERTa into [DistilRoBERTa](https://github.com/smartiden/Smart-Transformers/tree/main/examples/research_projects/distillation), Multilingual BERT into [DistilmBERT](https://github.com/smartiden/Smart-Transformers/tree/main/examples/research_projects/distillation) and a German version of DistilBERT.
 1. **[DiT](https://huggingface.co/docs/transformers/model_doc/dit)** (from Microsoft Research) released with the paper [DiT: Self-supervised Pre-training for Document Image Transformer](https://arxiv.org/abs/2203.02378) by Junlong Li, Yiheng Xu, Tengchao Lv, Lei Cui, Cha Zhang, Furu Wei.
 1. **[Donut](https://huggingface.co/docs/transformers/model_doc/donut)** (from NAVER), released together with the paper [OCR-free Document Understanding Transformer](https://arxiv.org/abs/2111.15664) by Geewook Kim, Teakgyu Hong, Moonbin Yim, Jeongyeon Nam, Jinyoung Park, Jinyeong Yim, Wonseok Hwang, Sangdoo Yun, Dongyoon Han, Seunghyun Park.
 1. **[DPR](https://huggingface.co/docs/transformers/model_doc/dpr)** (from Facebook) released with the paper [Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906) by Vladimir Karpukhin, Barlas Oğuz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov, Danqi Chen, and Wen-tau Yih.
@@ -558,7 +558,7 @@ Flax, PyTorch లేదా TensorFlow యొక్క ఇన్‌స్టా�
 
 ప్రతి మోడల్ ఫ్లాక్స్, పైటార్చ్ లేదా టెన్సర్‌ఫ్లోలో అమలు చేయబడిందా లేదా 🤗 Tokenizers లైబ్రరీ ద్వారా అనుబంధించబడిన టోకెనైజర్‌ని కలిగి ఉందో లేదో తనిఖీ చేయడానికి, [ఈ పట్టిక](https://huggingface.co/docs/transformers/index#supported-frameworks).
 
-ఈ అమలులు అనేక డేటాసెట్‌లలో పరీక్షించబడ్డాయి (ఉదాహరణ స్క్రిప్ట్‌లను చూడండి) మరియు అసలైన అమలుల పనితీరుతో సరిపోలాలి. మీరు [డాక్యుమెంటేషన్](https://github.com/huggingface/transformers/tree/main/examples) యొక్క ఉదాహరణల విభాగంలో పనితీరుపై మరిన్ని వివరాలను కనుగొనవచ్చు.
+ఈ అమలులు అనేక డేటాసెట్‌లలో పరీక్షించబడ్డాయి (ఉదాహరణ స్క్రిప్ట్‌లను చూడండి) మరియు అసలైన అమలుల పనితీరుతో సరిపోలాలి. మీరు [డాక్యుమెంటేషన్](https://github.com/smartiden/Smart-Transformers/tree/main/examples) యొక్క ఉదాహరణల విభాగంలో పనితీరుపై మరిన్ని వివరాలను కనుగొనవచ్చు.
 
 ## ఇంకా నేర్చుకో
 
@@ -568,7 +568,7 @@ Flax, PyTorch లేదా TensorFlow యొక్క ఇన్‌స్టా�
 | [టాస్క్ సారాంశం](https://huggingface.co/docs/transformers/task_summary) | 🤗 ట్రాన్స్‌ఫార్మర్‌ల ద్వారా సపోర్ట్ చేయబడిన విధులు |
 | [ప్రీప్రాసెసింగ్ ట్యుటోరియల్](https://huggingface.co/docs/transformers/preprocessing) | మోడల్‌ల కోసం డేటాను సిద్ధం చేయడానికి `Tokenizer` క్లాస్‌ని ఉపయోగించడం |
 | [ట్రైనింగ్ మరియు ఫైన్-ట్యూనింగ్](https://huggingface.co/docs/transformers/training) | PyTorch/TensorFlow ట్రైనింగ్ లూప్ మరియు `Trainer` APIలో 🤗 ట్రాన్స్‌ఫార్మర్లు అందించిన మోడల్‌లను ఉపయోగించడం |
-| [త్వరిత పర్యటన: ఫైన్-ట్యూనింగ్/యూసేజ్ స్క్రిప్ట్‌లు](https://github.com/huggingface/transformers/tree/main/examples) | విస్తృత శ్రేణి టాస్క్‌లపై ఫైన్-ట్యూనింగ్ మోడల్స్ కోసం ఉదాహరణ స్క్రిప్ట్‌లు |
+| [త్వరిత పర్యటన: ఫైన్-ట్యూనింగ్/యూసేజ్ స్క్రిప్ట్‌లు](https://github.com/smartiden/Smart-Transformers/tree/main/examples) | విస్తృత శ్రేణి టాస్క్‌లపై ఫైన్-ట్యూనింగ్ మోడల్స్ కోసం ఉదాహరణ స్క్రిప్ట్‌లు |
 | [మోడల్ భాగస్వామ్యం మరియు అప్‌లోడ్ చేయడం](https://huggingface.co/docs/transformers/model_sharing) | కమ్యూనిటీతో మీ ఫైన్-ట్యూన్డ్ మోడల్‌లను అప్‌లోడ్ చేయండి మరియు భాగస్వామ్యం చేయండి |
 
 ## అనులేఖనం
