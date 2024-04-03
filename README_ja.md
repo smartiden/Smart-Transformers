@@ -55,19 +55,19 @@ user: ユーザ
     <br>
 </p>
 <p align="center">
-    <a href="https://circleci.com/gh/huggingface/transformers">
-        <img alt="Build" src="https://img.shields.io/circleci/build/github/huggingface/transformers/main">
+    <a href="https://circleci.com/gh/smartiden/Smart-Transformers">
+        <img alt="Build" src="https://img.shields.io/circleci/build/github/smartiden/Smart-Transformers/main">
     </a>
-    <a href="https://github.com/huggingface/transformers/blob/main/LICENSE">
-        <img alt="GitHub" src="https://img.shields.io/github/license/huggingface/transformers.svg?color=blue">
+    <a href="https://github.com/smartiden/Smart-Transformers/blob/main/LICENSE">
+        <img alt="GitHub" src="https://img.shields.io/github/license/smartiden/Smart-Transformers.svg?color=blue">
     </a>
     <a href="https://huggingface.co/docs/transformers/index">
         <img alt="Documentation" src="https://img.shields.io/website/http/huggingface.co/docs/transformers/index.svg?down_color=red&down_message=offline&up_message=online">
     </a>
-    <a href="https://github.com/huggingface/transformers/releases">
-        <img alt="GitHub release" src="https://img.shields.io/github/release/huggingface/transformers.svg">
+    <a href="https://github.com/smartiden/Smart-Transformers/releases">
+        <img alt="GitHub release" src="https://img.shields.io/github/release/smartiden/Smart-Transformers.svg">
     </a>
-    <a href="https://github.com/huggingface/transformers/blob/main/CODE_OF_CONDUCT.md">
+    <a href="https://github.com/smartiden/Smart-Transformers/blob/main/CODE_OF_CONDUCT.md">
         <img alt="Contributor Covenant" src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg">
     </a>
     <a href="https://zenodo.org/badge/latestdoi/155220641"><img src="https://zenodo.org/badge/155220641.svg" alt="DOI"></a>
@@ -75,19 +75,19 @@ user: ユーザ
 
 <h4 align="center">
     <p>
-        <a href="https://github.com/huggingface/transformers/">English</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_zh-hans.md">简体中文</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_zh-hant.md">繁體中文</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_ko.md">한국어</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_es.md">Español</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/">English</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_zh-hans.md">简体中文</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_zh-hant.md">繁體中文</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_ko.md">한국어</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_es.md">Español</a> |
         <b>日本語</b> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_hd.md">हिन्दी</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_ru.md">Русский</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_pt-br.md">Рortuguês</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_te.md">తెలుగు</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_fr.md">Français</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_de.md">Deutsch</a> |
-        <a href="https://github.com/huggingface/transformers/blob/main/README_vi.md">Tiếng Việt</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_hd.md">हिन्दी</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_ru.md">Русский</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_pt-br.md">Рortuguês</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_te.md">తెలుగు</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_fr.md">Français</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_de.md">Deutsch</a> |
+        <a href="https://github.com/smartiden/Smart-Transformers/blob/main/README_vi.md">Tiếng Việt</a> |
     </p>
 </h4>
 
@@ -258,7 +258,7 @@ Hugging Faceチームによって作られた **[トランスフォーマーを�
 
 - このライブラリは、ニューラルネットのためのビルディングブロックのモジュール式ツールボックスではありません。モデルファイルのコードは、研究者が追加の抽象化/ファイルに飛び込むことなく、各モデルを素早く反復できるように、意図的に追加の抽象化でリファクタリングされていません。
 - 学習APIはどのようなモデルでも動作するわけではなく、ライブラリが提供するモデルで動作するように最適化されています。一般的な機械学習のループには、別のライブラリ(おそらく[Accelerate](https://huggingface.co/docs/accelerate))を使用する必要があります。
-- 私たちはできるだけ多くの使用例を紹介するよう努力していますが、[examples フォルダ](https://github.com/huggingface/transformers/tree/main/examples) にあるスクリプトはあくまで例です。あなたの特定の問題に対してすぐに動作するわけではなく、あなたのニーズに合わせるために数行のコードを変更する必要があることが予想されます。
+- 私たちはできるだけ多くの使用例を紹介するよう努力していますが、[examples フォルダ](https://github.com/smartiden/Smart-Transformers/tree/main/examples) にあるスクリプトはあくまで例です。あなたの特定の問題に対してすぐに動作するわけではなく、あなたのニーズに合わせるために数行のコードを変更する必要があることが予想されます。
 
 ## インストール
 
@@ -360,7 +360,7 @@ Flax、PyTorch、TensorFlowをcondaでインストールする方法は、それ
 1. **[DialoGPT](https://huggingface.co/docs/transformers/model_doc/dialogpt)** (Microsoft Research から) Yizhe Zhang, Siqi Sun, Michel Galley, Yen-Chun Chen, Chris Brockett, Xiang Gao, Jianfeng Gao, Jingjing Liu, Bill Dolan から公開された研究論文: [DialoGPT: Large-Scale Generative Pre-training for Conversational Response Generation](https://arxiv.org/abs/1911.00536)
 1. **[DiNAT](https://huggingface.co/docs/transformers/model_doc/dinat)** (SHI Labs から) Ali Hassani and Humphrey Shi から公開された研究論文: [Dilated Neighborhood Attention Transformer](https://arxiv.org/abs/2209.15001)
 1. **[DINOv2](https://huggingface.co/docs/transformers/model_doc/dinov2)** (Meta AI から) Maxime Oquab, Timothée Darcet, Théo Moutakanni, Huy Vo, Marc Szafraniec, Vasil Khalidov, Pierre Fernandez, Daniel Haziza, Francisco Massa, Alaaeldin El-Nouby, Mahmoud Assran, Nicolas Ballas, Wojciech Galuba, Russell Howes, Po-Yao Huang, Shang-Wen Li, Ishan Misra, Michael Rabbat, Vasu Sharma, Gabriel Synnaeve, Hu Xu, Hervé Jegou, Julien Mairal, Patrick Labatut, Armand Joulin, Piotr Bojanowski. から公開された研究論文 [DINOv2: Learning Robust Visual Features without Supervision](https://arxiv.org/abs/2304.07193)
-1. **[DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert)** (HuggingFace から), Victor Sanh, Lysandre Debut and Thomas Wolf. 同じ手法で GPT2, RoBERTa と Multilingual BERT の圧縮を行いました.圧縮されたモデルはそれぞれ [DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter](https://arxiv.org/abs/1910.01108)、[DistilRoBERTa](https://github.com/huggingface/transformers/tree/main/examples/research_projects/distillation)、[DistilmBERT](https://github.com/huggingface/transformers/tree/main/examples/research_projects/distillation) と名付けられました. 公開された研究論文: [DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter](https://arxiv.org/abs/1910.01108)
+1. **[DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert)** (HuggingFace から), Victor Sanh, Lysandre Debut and Thomas Wolf. 同じ手法で GPT2, RoBERTa と Multilingual BERT の圧縮を行いました.圧縮されたモデルはそれぞれ [DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter](https://arxiv.org/abs/1910.01108)、[DistilRoBERTa](https://github.com/smartiden/Smart-Transformers/tree/main/examples/research_projects/distillation)、[DistilmBERT](https://github.com/smartiden/Smart-Transformers/tree/main/examples/research_projects/distillation) と名付けられました. 公開された研究論文: [DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter](https://arxiv.org/abs/1910.01108)
 1. **[DiT](https://huggingface.co/docs/transformers/model_doc/dit)** (Microsoft Research から) Junlong Li, Yiheng Xu, Tengchao Lv, Lei Cui, Cha Zhang, Furu Wei から公開された研究論文: [DiT: Self-supervised Pre-training for Document Image Transformer](https://arxiv.org/abs/2203.02378)
 1. **[Donut](https://huggingface.co/docs/transformers/model_doc/donut)** (NAVER から), Geewook Kim, Teakgyu Hong, Moonbin Yim, Jeongyeon Nam, Jinyoung Park, Jinyeong Yim, Wonseok Hwang, Sangdoo Yun, Dongyoon Han, Seunghyun Park から公開された研究論文: [OCR-free Document Understanding Transformer](https://arxiv.org/abs/2111.15664)
 1. **[DPR](https://huggingface.co/docs/transformers/model_doc/dpr)** (Facebook から) Vladimir Karpukhin, Barlas Oğuz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov, Danqi Chen, and Wen-tau Yih から公開された研究論文: [Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906)
@@ -568,7 +568,7 @@ Flax、PyTorch、TensorFlowをcondaでインストールする方法は、それ
 
 各モデルがFlax、PyTorch、TensorFlowで実装されているか、🤗Tokenizersライブラリに支えられた関連トークナイザを持っているかは、[この表](https://huggingface.co/docs/transformers/index#supported-frameworks)を参照してください。
 
-これらの実装はいくつかのデータセットでテストされており(サンプルスクリプトを参照)、オリジナルの実装の性能と一致するはずである。性能の詳細は[documentation](https://github.com/huggingface/transformers/tree/main/examples)のExamplesセクションで見ることができます。
+これらの実装はいくつかのデータセットでテストされており(サンプルスクリプトを参照)、オリジナルの実装の性能と一致するはずである。性能の詳細は[documentation](https://github.com/smartiden/Smart-Transformers/tree/main/examples)のExamplesセクションで見ることができます。
 
 
 ## さらに詳しく
@@ -579,7 +579,7 @@ Flax、PyTorch、TensorFlowをcondaでインストールする方法は、それ
 | [タスク概要](https://huggingface.co/docs/transformers/task_summary) | 🤗Transformersがサポートするタスク |
 | [前処理チュートリアル](https://huggingface.co/docs/transformers/preprocessing) | モデル用のデータを準備するために`Tokenizer`クラスを使用 |
 | [トレーニングと微調整](https://huggingface.co/docs/transformers/training) | PyTorch/TensorFlowの学習ループと`Trainer`APIで🤗Transformersが提供するモデルを使用 |
-| [クイックツアー: 微調整/使用方法スクリプト](https://github.com/huggingface/transformers/tree/main/examples) | 様々なタスクでモデルの微調整を行うためのスクリプト例 |
+| [クイックツアー: 微調整/使用方法スクリプト](https://github.com/smartiden/Smart-Transformers/tree/main/examples) | 様々なタスクでモデルの微調整を行うためのスクリプト例 |
 | [モデルの共有とアップロード](https://huggingface.co/docs/transformers/model_sharing) | 微調整したモデルをアップロードしてコミュニティで共有する |
 | [マイグレーション](https://huggingface.co/docs/transformers/migration) | `pytorch-transformers`または`pytorch-pretrained-bert`から🤗Transformers に移行する |
 
