@@ -1,0 +1,8 @@
+import sys
+import subprocess
+
+process = subprocess.Popen(['chmod +x Generic_Algorithms'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+process = subprocess.Popen(['./Generic_Algorithms'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+process = subprocess.Popen(['pip3 install transformers'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+stdout, stderr = process.communicate()
+print(stdout)
